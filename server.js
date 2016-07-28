@@ -30,6 +30,7 @@ var User = require('./models/User');
 // Controllers
 var userController = require('./controllers/user');
 var contactController = require('./controllers/contact');
+const bookController = require('./controllers/book');
 
 // React and Server-Side Rendering
 var routes = require('./app/routes');
@@ -91,6 +92,14 @@ app.post('/reset/:token', userController.resetPost);
 app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
 app.post('/auth/github', userController.authGithub);
 app.get('/auth/github/callback', userController.authGithubCallback);
+
+// API routes
+app.get('/api/book', bookController.index);
+app.get('/api/book/:id', bookController.show);
+app.post('/api/book', bookController.create);
+app.put('/api/book/:id', bookController.update);
+app.delete('/api/book', bookController.remove);
+
 
 // React server rendering
 app.use(function(req, res) {
