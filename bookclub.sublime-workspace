@@ -1,0 +1,829 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"err",
+				"errorMessage"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"api",
+				"apiKey"
+			],
+			[
+				"add",
+				"addAndFetch"
+			],
+			[
+				"ad",
+				"addAndFetch"
+			],
+			[
+				"remo",
+				"removeSeries"
+			],
+			[
+				"char",
+				"chartSeries"
+			],
+			[
+				"ser",
+				"seriesIndex"
+			],
+			[
+				"RE",
+				"REMOTE_ADD_TICKER"
+			],
+			[
+				"get",
+				"getState"
+			],
+			[
+				"ticker",
+				"tickerSymbol"
+			],
+			[
+				"remove",
+				"removeTicker"
+			],
+			[
+				"s",
+				"socketMiddleware"
+			],
+			[
+				"fetc",
+				"fetchStockData"
+			],
+			[
+				"sock",
+				"socketActions"
+			],
+			[
+				"tick",
+				"tickerSymbol"
+			],
+			[
+				"t",
+				"tickerSymbol"
+			],
+			[
+				"han",
+				"handleRemoveTicker"
+			],
+			[
+				"handl",
+				"handleRemoveTicker"
+			],
+			[
+				"handle",
+				"handleAddTicker"
+			],
+			[
+				"hand",
+				"handleAddTicker"
+			],
+			[
+				"tic",
+				"tickerToRemove"
+			],
+			[
+				"map",
+				"mapDispatchToProps"
+			],
+			[
+				"pro",
+				"promisePlugin"
+			],
+			[
+				"stock",
+				"stockList"
+			],
+			[
+				"S",
+				"StockListSchema"
+			],
+			[
+				"body",
+				"bodyParser"
+			],
+			[
+				"ma",
+				"markedToAdd"
+			],
+			[
+				"mark",
+				"markedToRemove"
+			],
+			[
+				"mar",
+				"markAsAdded"
+			],
+			[
+				"new",
+				"newProps"
+			],
+			[
+				"Reac",
+				"ReactHighstock"
+			],
+			[
+				"a",
+				"assign"
+			],
+			[
+				"is",
+				"isFetching"
+			],
+			[
+				"R",
+				"REQUEST_STOCK_DATA"
+			],
+			[
+				"input",
+				"inputVal"
+			],
+			[
+				"on",
+				"onAddTicker"
+			],
+			[
+				"o",
+				"onRemoveClick"
+			],
+			[
+				"b",
+				"browserHistory"
+			],
+			[
+				"Ro",
+				"RoomContainer"
+			],
+			[
+				"con",
+				"containers"
+			],
+			[
+				"P",
+				"PropTypes"
+			],
+			[
+				"Pro",
+				"Provider"
+			],
+			[
+				"prop",
+				"PropTypes"
+			],
+			[
+				"req",
+				"req react 	req-react"
+			],
+			[
+				"Ticker",
+				"TickerList"
+			],
+			[
+				"Re",
+				"React"
+			],
+			[
+				"sto",
+				"stockApp"
+			],
+			[
+				"create",
+				"createStore"
+			],
+			[
+				"crea",
+				"createStore"
+			],
+			[
+				"flex-",
+				"flex-start"
+			],
+			[
+				"fle",
+				"flex-start"
+			],
+			[
+				"Char",
+				"ChartContainer"
+			],
+			[
+				"c",
+				"ChartContainer"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"bl",
+				"inline-block"
+			],
+			[
+				"space",
+				"space-between"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"li",
+				"link	Tag"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"main",
+				"mainStyle"
+			],
+			[
+				"Main",
+				"MainContainer"
+			],
+			[
+				"Router",
+				"ReactRouter"
+			],
+			[
+				"we",
+				"webpack"
+			],
+			[
+				"webpack",
+				"webpack-dev-server"
+			],
+			[
+				"H",
+				"HelloWorld"
+			],
+			[
+				"something",
+				"somethingAsync"
+			],
+			[
+				"some",
+				"somethingAsync"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 235,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "npm",
+		"selected_items":
+		[
+			[
+				"npm",
+				"npm: Install Package"
+			],
+			[
+				"typescript: sho",
+				"TypeScript: Show Error List"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git commi",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"togg",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"toggle",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"sublei",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"sublimeLInter: linter",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"sublimeLInter",
+				"SublimeLinter: Disable Linter"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"git",
+				"Git: Add All"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"preferences subl",
+				"Preferences: SublimeLinter Settings – Default"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"uni",
+				"npm: Remove/Uninstall Package"
+			],
+			[
+				"componen",
+				"Snippet: React.PropTypes.component"
+			],
+			[
+				"snippet",
+				"Snippet: Component Template (ES2015)"
+			],
+			[
+				"template",
+				"Snippet: Component Template (ES2015)"
+			],
+			[
+				"Snippet: ",
+				"Snippet: A default HTML page"
+			],
+			[
+				"glu",
+				"Glue - Launch"
+			],
+			[
+				"glue",
+				"Glue - Launch"
+			],
+			[
+				"set syntax: js",
+				"Set Syntax: JSX"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 536.0
+	},
+	"console":
+	{
+		"height": 617.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Vince/WebstormProjects/bookclub"
+	],
+	"file_history":
+	[
+		"/C/Users/Vince/WebstormProjects/stocks/client/reducers/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/.gitignore",
+		"/C/Users/Vince/WebstormProjects/stocks/server/config/express.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/app.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/stock/stock.controller.js",
+		"/C/Users/Vince/WebstormProjects/stocks/package.json",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/stock/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/dist/server/app.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/config/environment.js",
+		"/C/Users/Vince/WebstormProjects/stocks/Procfile",
+		"/C/Users/Vince/WebstormProjects/stocks/server/config/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/config/local.env.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/config/socket.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/containers/ChartContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/redux-socket-middleware.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/components/Chart.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/reducers/series.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/routes.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/containers/TickerContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/actions/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/reducers/tickers.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/components/TickerList.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/containers/App.js",
+		"/C/Users/Vince/WebstormProjects/stocks/client/components/NewTicker.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/room/room.model.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/room/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/room/room.controller.js",
+		"/C/Users/Vince/WebstormProjects/spotsy/README.md",
+		"/C/Users/Vince/WebstormProjects/spotsy/app/org/andrewconner/spot/cmdrs/HistoricalSpotPrice.scala",
+		"/C/Users/Vince/WebstormProjects/stocks/client/index.html",
+		"/C/Users/Vince/WebstormProjects/stocks/client/containers/RoomContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/dist/public/index.html",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/list/list.model.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/list/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/stock/stock.model.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/stock-list/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/stock-list/list.model.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/config/.babelrc",
+		"/C/Users/Vince/WebstormProjects/stocks/server/api/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/webpack.config.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server/.babelrc",
+		"/C/Users/Vince/WebstormProjects/stocks/tsconfig.json",
+		"/C/Users/Vince/WebstormProjects/stocks/server/config.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/NewTicker.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/Ticker.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/create-store.js",
+		"/C/Users/Vince/WebstormProjects/stocks/server.ts",
+		"/C/Users/Vince/WebstormProjects/stocks/server.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/containers/ChartContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/Chart.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/Room.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/config.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/actions/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/containers/TickerContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/containers/RoomContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/reducers/series.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/reducers/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/reducers/tickers.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/reducers/chart.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/TickerList.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/containers/App.js",
+		"/C/Users/Vince/WebstormProjects/stocks/.eslintrc.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/routes.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/style.css",
+		"/C/Users/Vince/WebstormProjects/stocks/app/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/containers/Root.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/index.html",
+		"/C/Users/Vince/WebstormProjects/stocks/dist/index.html",
+		"/C/Users/Vince/WebstormProjects/stocks/dist/index_bundle.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/containers/MainContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/.babelrc",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/Footer.js",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/req-react.sublime-snippet",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter-contrib-eslint/README.md",
+		"/C/Users/Vince/WebstormProjects/stocks/node_modules/eslint-config-defaults/rules/react/airbnb.js",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/ESLint/README.md",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/ESLint/ESLint.sublime-settings",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/Vince/WebstormProjects/stocks/.eslintrc",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/App.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/reducers/idex.js",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/react-createClass.sublime-snippet",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Vince/WebstormProjects/stocks/app/styles/index.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/config/routes.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/Main.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/Home.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/containers/HomeContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/containers/ButtonContainer.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/components/Button.js",
+		"/C/Users/Vince/WebstormProjects/stocks/app/styles.js",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/react-createComponent.sublime-snippet",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript (Babel).sublime-settings",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/module-export.sublime-snippet",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/JSX.sublime-settings",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/blank-html.sublime-snippet",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/Distraction Free.sublime-settings",
+		"/C/Users/Vince/WebstormProjects/stocks/.eslint",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/npm/npm.sublime-settings",
+		"/C/Users/Vince/WebstormProjects/react-fundamentals/terminal.glue",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/Base File.sublime-settings",
+		"/C/Users/Vince/WebstormProjects/react-fundamentals/app/config/routes.js",
+		"/C/Users/Vince/AppData/Roaming/Sublime Text 3/Packages/User/JSON.sublime-settings",
+		"/C/Users/Vince/WebstormProjects/test/conditional-promise.js",
+		"/C/Users/Vince/WebstormProjects/test/react/reactJsProgram/package.json",
+		"/C/Users/Vince/WebstormProjects/test/react/reactJsProgram/webpack.config.js",
+		"/C/Users/Vince/WebstormProjects/test/react/reactJsProgram/dist/index_bundle.js",
+		"/C/Users/Vince/WebstormProjects/test/react/reactJsProgram/dist/index.html",
+		"/C/Users/Vince/WebstormProjects/test/react/reactJsProgram/app/index.html",
+		"/C/Users/Vince/WebstormProjects/test/react/reactJsProgram/app/index.js",
+		"/C/Users/Vince/WebstormProjects/test/react/reactJsProgram/.babelrc",
+		"/C/Users/Vince/WebstormProjects/test/sql_test.js",
+		"/C/Users/Vince/WebstormProjects/test/react"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 136.0,
+		"where_history":
+		[
+			"<project>",
+			"C:\\Users\\Vince\\WebstormProjects\\stocks\\server",
+			"C:\\Users\\Vince\\WebstormProjects\\stocks\\client",
+			"<project>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"environment.js",
+			"local.env.js",
+			"broadcast",
+			"lodash",
+			"io",
+			"HomeContainer",
+			"RoomContainer",
+			"no-empty-label",
+			"tru"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 235,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								199,
+								199
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 55.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.errorlist":
+	{
+		"height": 176.0
+	},
+	"output.exec":
+	{
+		"height": 212.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 136.0
+	},
+	"output.sbt":
+	{
+		"height": 0.0
+	},
+	"output.sbt_error":
+	{
+		"height": 0.0
+	},
+	"output.textarea":
+	{
+		"height": 176.0
+	},
+	"pinned_build_system": "",
+	"project": "bookclub.sublime-project",
+	"replace":
+	{
+		"height": 68.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 400.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 408.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 303.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
