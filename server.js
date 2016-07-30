@@ -31,6 +31,7 @@ var User = require('./models/User');
 var userController = require('./controllers/user');
 var contactController = require('./controllers/contact');
 const bookController = require('./controllers/book');
+const tradeController = require('./controllers/trade');
 
 // React and Server-Side Rendering
 var routes = require('./app/routes');
@@ -94,11 +95,19 @@ app.post('/auth/github', userController.authGithub);
 app.get('/auth/github/callback', userController.authGithubCallback);
 
 // API routes
+// Books
 app.get('/api/book', bookController.index);
 app.get('/api/book/:id', bookController.show);
 app.post('/api/book', bookController.create);
 app.put('/api/book/:id', bookController.update);
 app.delete('/api/book', bookController.remove);
+
+// Trade
+app.get('/api/trade', tradeController.index);
+app.get('/api/trade/:id', tradeController.show);
+app.post('/api/trade', tradeController.create);
+app.put('/api/trade/:id', tradeController.update);
+app.delete('/api/trade', tradeController.remove);
 
 
 // React server rendering

@@ -8,10 +8,10 @@ import { browserHistory } from 'react-router';
 export function githubLogin() {
   const github = {
     url: 'http://localhost:3000/auth/github',
-    clientId: 'c8d5bf482c0ece46fa1a',
+    clientId: '344e0ad37a1bd3f03357',
     redirectUri: 'http://localhost:3000/auth/github/callback',
     authorizationUrl: 'https://github.com/login/oauth/authorize',
-    scope: 'user:email profile repo',
+    scope: 'user:email',
     width: 452,
     height: 633
   };

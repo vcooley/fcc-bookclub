@@ -2,7 +2,6 @@ const _ = require('lodash');
 const Book = require('../models/Book');
 
 function handleError(err, res) {
-  console.log(err)
   return res.status(500).send('Server Error.');
 }
 
@@ -26,7 +25,6 @@ exports.show = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  console.log(req.body)
   if (!req.body.title) {
     return res.status(400).send('Bad Request.');
   }
