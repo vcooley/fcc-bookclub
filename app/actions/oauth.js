@@ -11,7 +11,7 @@ export function githubLogin() {
     clientId: '344e0ad37a1bd3f03357',
     redirectUri: 'http://localhost:3000/auth/github/callback',
     authorizationUrl: 'https://github.com/login/oauth/authorize',
-    scope: 'user:email',
+    scope: 'user',
     width: 452,
     height: 633
   };

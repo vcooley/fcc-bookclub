@@ -296,9 +296,9 @@ exports.resetPost = function(req, res, next) {
  * Sign in with Github
  */
 exports.authGithub = (req, res) => {
-  let profile;
   const accessTokenUrl = 'https://github.com/login/oauth/access_token';
   const userUrl = 'https://api.github.com/user';
+  const emailsUrl = 'https://api.github.com/user/emails';
 
   const params = {
     code: req.body.code,
@@ -307,10 +307,7 @@ exports.authGithub = (req, res) => {
     redirect_uri: req.body.redirectUri,
     grant_type: 'authorization_code',
   };
-  const headers = {
-    Authorization: 'bearer ',
-    'User-Agent': 'bookclub',
-  };
+
 
   // Step 1. Exchange authorization code for access token.
   request.post(accessTokenUrl, { json: true, form: params })
@@ -318,73 +315,71 @@ exports.authGithub = (req, res) => {
     return response.body.access_token;
   })
   .then(accessToken => {
-    headers.Authorization = `bearer ${accessToken}`;
-    // Step 2. Retrieve user's profile information.
-    return request.get({ headers, url: userUrl, json: true });
+    const headers = {
+      Authorization: `bearer ${accessToken}`,
+      'User-Agent': 'bookclub',
+    };
+    const profileRequest = request.get({ headers, url: userUrl, json: true });
+    const emailRequest = request.get({ headers, url: emailsUrl, json: true });
+    return Promise.all([profileRequest, emailRequest]);
   })
-  .then(response => {
-    profile = response.body;
-    const emailsUrl = 'https://api.github.com/user/emails';
-    return request.get({ headers, url: emailsUrl, json: true });
-  })
-  .then(response => {
-    const emails = response.body;
+  .then(responses => {
+    const profile = responses[0].body;
+    const emails = responses[1].body;
     let primary = emails.find(email => email.primary === true);
     if (!primary) {
       primary = emails[0];
     }
     profile.email = primary.email;
-    return profile;
-  })
-  .then(() => {
+
     if (profile.error) {
       return res.status(500).send({ message: profile.error.message });
     }
       // Step 3a. Link accounts if user is authenticated.
     if (req.isAuthenticated()) {
       return new User({ github: profile.id })
-        .fetch()
-        .then(user => {
-          if (user) {
-            return res.status(409).send({
-              msg: 'There is already an existing account linked with Github that belongs to you.',
-            });
-          }
-          user = req.user;
-          user.set('name', user.get('name') || profile.name);
-          user.set('picture', user.get('picture') || profile.avatar_url);
-          user.set('location', user.get('location') || profile.location);
-          user.set('github', profile.id);
-          return user.save(user.changed, { patch: true }).then(() => {
-            return res.send({ token: generateToken(user), user });
+      .fetch()
+      .then(user => {
+        if (user) {
+          return res.status(409).send({
+            msg: 'There is already an existing account linked with Github that belongs to you.',
           });
+        }
+        user = req.user;
+        user.set('name', user.get('name') || profile.name);
+        user.set('picture', user.get('picture') || profile.avatar_url);
+        user.set('location', user.get('location') || profile.location);
+        user.set('github', profile.id);
+        return user.save(user.changed, { patch: true }).then(() => {
+          return res.send({ token: generateToken(user), user });
         });
+      });
     }
 
     // Step 3b. Create a new user account or return an existing one.
     return new User({ github: profile.id })
+    .fetch()
+    .then(user => {
+      if (user) {
+        return res.send({ token: generateToken(user), user });
+      }
+      new User({ email: profile.email })
       .fetch()
       .then(user => {
         if (user) {
-          return res.send({ token: generateToken(user), user });
-        }
-        new User({ email: profile.email })
-          .fetch()
-          .then(user => {
-            if (user) {
-              return res.status(400).send({
-                msg: `${user.get('email')} is already associated with another account.`,
-              });
-            }
-            user = new User();
-            user.set('name', profile.name);
-            user.set('email', profile.email);
-            user.set('location', profile.location);
-            user.set('picture', profile.avatar_url);
-            user.set('github', profile.id);
-            return user.save().then(user => res.send({ token: generateToken(user), user }));
+          return res.status(400).send({
+            msg: `${user.get('email')} is already associated with another account.`,
           });
+        }
+        user = new User();
+        user.set('name', profile.name);
+        user.set('email', profile.email);
+        user.set('location', profile.location);
+        user.set('picture', profile.avatar_url);
+        user.set('github', profile.id);
+        return user.save().then(user => res.send({ token: generateToken(user), user }));
       });
+    });
   });
 };
 
