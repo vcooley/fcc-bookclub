@@ -18,7 +18,7 @@ var webpack = require('webpack');
 var config = require('./webpack.config');
 
 // Load environment variables from .env file
-dotenv.load();
+dotenv.config({ path: `${__dirname}/.env` });
 
 // ES6 Transpiler
 require('babel-core/register');
@@ -52,9 +52,10 @@ app.use(expressValidator());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-  req.isAuthenticated = function() {
-    var token = (req.headers.authorization && req.headers.authorization.split(' ')[1]) || req.cookies.token;
+app.use((req, res, next) => {
+  req.isAuthenticated = () => {
+    const token =
+    (req.headers.authorization && req.headers.authorization.split(' ')[1]) || req.cookies.token;
     try {
       return jwt.verify(token, process.env.TOKEN_SECRET);
     } catch (err) {
@@ -63,10 +64,10 @@ app.use(function(req, res, next) {
   };
 
   if (req.isAuthenticated()) {
-    var payload = req.isAuthenticated();
+    const payload = req.isAuthenticated();
     new User({ id: payload.sub })
       .fetch()
-      .then(function(user) {
+      .then((user) => {
         req.user = user;
         next();
       });
@@ -78,7 +79,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: config.output.publicPath,
   }));
   app.use(require('webpack-hot-middleware')(compiler));
 }
@@ -111,26 +112,29 @@ app.delete('/api/trade', tradeController.remove);
 
 
 // React server rendering
-app.use(function(req, res) {
-  var initialState = {
+app.use((req, res) => {
+  const initialState = {
     auth: { token: req.cookies.token, user: req.user },
-    messages: {}
+    messages: {},
   };
 
-  var store = configureStore(initialState);
+  const store = configureStore(initialState);
 
-  Router.match({ routes: routes.default(store), location: req.url }, function(err, redirectLocation, renderProps) {
+  Router.match({
+    routes: routes.default(store),
+    location: req.url,
+  }, (err, redirectLocation, renderProps) => {
     if (err) {
       res.status(500).send(err.message);
     } else if (redirectLocation) {
       res.status(302).redirect(redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      var html = ReactDOM.renderToString(React.createElement(Provider, { store: store },
+      const html = ReactDOM.renderToString(React.createElement(Provider, { store },
         React.createElement(Router.RouterContext, renderProps)
       ));
       res.render('layout', {
-        html: html,
-        initialState: store.getState()
+        html,
+        initialState: store.getState(),
       });
     } else {
       res.sendStatus(404);
@@ -140,13 +144,18 @@ app.use(function(req, res) {
 
 // Production error handler
 if (app.get('env') === 'production') {
-  app.use(function(err, req, res, next) {
+  app.use((err, req, res, next) => {
     console.error(err.stack);
     res.sendStatus(err.status || 500);
   });
 }
 
-app.listen(app.get('port'), function() {
+// Set random port for concurrent tests.
+if (app.get('env') === 'test') {
+  app.set('port', 0)
+}
+
+app.listen(app.get('port'), () => {
   console.log('Express server listening on port ' + app.get('port'));
 });
 

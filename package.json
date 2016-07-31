@@ -9,7 +9,8 @@
     "start": "nodemon server.js",
     "test": "npm run test:client && npm run test:server",
     "test:client": "mocha test/client --recursive --compilers js:babel-register",
-    "test:server": "mocha test/server --recursive --compilers js:babel-register"
+    "test:server": "set NODE_ENV=test&& ava",
+    "ava:watch": "set NODE_ENV=test&& ava --watch"
   },
   "dependencies": {
     "async": "^1.5.2",
@@ -54,6 +55,7 @@
     "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
+    "ava": "^0.15.2",
     "babel-eslint": "^6.1.2",
     "babel-plugin-rewire": "^1.0.0-rc-3",
     "babel-register": "^6.8.0",
@@ -72,5 +74,16 @@
   },
   "engines": {
     "node": "6.1.0"
+  },
+  "ava": {
+    "files": [
+        "test/**/*.test.js",
+        "!test/client/**/*.js"
+    ],
+    "failFast": true,
+    "require": [
+        "babel-register"
+    ],
+    "babel": "inherit"
   }
 }

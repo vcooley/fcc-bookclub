@@ -2,10 +2,11 @@ const _ = require('lodash');
 const Trade = require('../models/Trade');
 
 function handleError(err, res) {
-  console.log(err)
-  return res.status(500).send('Server Error.');
+  return res.status(err.code || 500).send({ msg: err.msg || 'Server Error.' });
 }
 
+// endpoint /api/trade
+// GET /
 exports.index = (req, res) => {
   return Trade.forge().fetchAll()
   .then(trades => {
@@ -14,20 +15,26 @@ exports.index = (req, res) => {
   .catch(err => handleError(err, res));
 };
 
+// GET /:id
 exports.show = (req, res) => {
   return Trade.forge({ id: req.params.id }).fetch()
   .then(trade => {
     if (!trade) {
-      return res.status(404).send('Not Found.');
+      return handleError({ code: 404, msg: 'Not Found.' }, res);
     }
     return res.json(trade.toJSON());
   })
   .catch(err => handleError(err, res));
 };
 
+// POST /
 exports.create = (req, res) => {
+  if (!req.isAuthenticated()) {
+    return handleError({ code: 401, msg: 'Requires login.' }, res);
+  }
   req.checkBody('requestee', 'Requires requestee.').notEmpty().isInt();
   req.checkBody('requesteeBook', 'Requires requestee book.').notEmpty().isInt();
+
   return Trade.forge({
     requester: req.user.id,
     requestee: req.body.requestee,
@@ -38,23 +45,48 @@ exports.create = (req, res) => {
   .catch(err => handleError(err, res));
 };
 
+// PUT /:id
 exports.update = (req, res) => {
   const data = Object.extend({}, req.body);
   return Trade.forge({ id: req.params.id })
   .fetch({ require: true })
   .then(book => {
     data.id = book.id;
-    return book.save(_.assign(book, req.body));
+    return book.save(_.assign(book, data));
   })
   .catch(err => handleError(err, res));
 };
 
+// DELETE /:id
 exports.remove = (req, res) => {
   if (!req.body.id) {
-    return res.status(400).send('Bad Request.');
+    return handleError({ code: 400, msg: 'Bad Request' }, res);
   }
   return Trade.forge({ id: req.params.id }).fetch({ required: true })
   .then(book => book.destroy())
   .then(() => res.status(204))
   .catch(err => handleError(err, res));
+};
+
+// POST /:id/approve
+exports.approve = (req, res) => {
+  return Trade.forge({ id: req.params.id })
+  .fetch(trade => {
+    if (!trade) {
+      return handleError({ code: 404, msg: 'Not Found.', res });
+    }
+    if (!req.isAuthenticated()) {
+      return handleError({ code: 401, msg: 'Unauthorized.' }, res);
+    }
+    if (req.user.id === trade.requester) {
+      trade.set('requester_approval', true);
+      return trade.save().then(() => res.json(trade));
+    }
+    if (req.user.id === trade.requestee) {
+      trade.set('requestee_approval', true);
+      return trade.save().then(() => res.json(trade));
+    }
+
+    return handleError({ code: 401, msg: 'Unauthorized.' }, res);
+  });
 };

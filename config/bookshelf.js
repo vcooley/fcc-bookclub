@@ -6,6 +6,12 @@ bookshelf.plugin('virtuals');
 bookshelf.plugin('visibility');
 bookshelf.plugin('registry');
 
-knex.migrate.latest();
+knex.migrate.latest().catch(err => {
+  if (process.env.NODE_ENV === 'test') {
+    console.error('migrations failed in test environment: ignoring...');
+  } else {
+    throw err;
+  }
+});
 
 module.exports = bookshelf;

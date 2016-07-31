@@ -1,18 +1,15 @@
-var request = require('supertest');
-var server = require('../../server');
+const test = require('ava');
+const request = require('supertest');
+const server = require('../../server');
 
-describe('GET /', function() {
-  it('should render ok', function(done) {
-    request(server)
-      .get('/')
-      .expect(200, done);
-  });
+test('GET /', t => {
+  request(server)
+  .get('/')
+  .expect(200, t.pass);
 });
 
-describe('GET /contact', function() {
-  it('should render ok', function(done) {
-    request(server)
-      .get('/contact')
-      .expect(200, done);
-  });
+test('GET /contact', t => {
+  request(server)
+  .get('/contact')
+  .expect(200, t.pass);
 });

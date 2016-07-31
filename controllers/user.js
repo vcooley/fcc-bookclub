@@ -13,7 +13,7 @@ function generateToken(user) {
     iss: 'my.domain.com',
     sub: user.id,
     iat: moment().unix(),
-    exp: moment().add(7, 'days').unix()
+    exp: moment().add(7, 'days').unix(),
   };
   return jwt.sign(payload, process.env.TOKEN_SECRET);
 }
@@ -87,7 +87,9 @@ exports.signupPost = function(req, res, next) {
     })
     .catch(function(err) {
       if (err.code === 'ER_DUP_ENTRY' || err.code === '23505') {
-        return res.status(400).send({ msg: 'The email address you have entered is already associated with another account.' });
+        return res.status(400).send({
+          msg: 'The email address you have entered is already associated with another account.',
+        });
       }
     });
 };

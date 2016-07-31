@@ -1,8 +1,8 @@
 const dotenv = require('dotenv');
 
-dotenv.load();
+dotenv.config({ path: `${__dirname}/.env` });
 
-module.exports = {
+const config = {
   development: {
     client: 'pg',
     connection: process.env.DATABASE_URL || {
@@ -20,3 +20,7 @@ module.exports = {
     connection: process.env.DATABASE_URL,
   },
 };
+
+config.test = config.development;
+
+module.exports = config;
