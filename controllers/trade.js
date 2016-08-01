@@ -34,6 +34,10 @@ exports.create = (req, res) => {
   }
   req.checkBody('requestee', 'Requires requestee.').notEmpty().isInt();
   req.checkBody('requesteeBook', 'Requires requestee book.').notEmpty().isInt();
+  const errors = req.validationErrors();
+  if (errors) {
+    return handleError({ code: 400, msg: errors })
+  }
 
   return Trade.forge({
     requester: req.user.id,
@@ -70,19 +74,20 @@ exports.remove = (req, res) => {
 
 // POST /:id/approve
 exports.approve = (req, res) => {
-  return Trade.forge({ id: req.params.id })
-  .fetch(trade => {
+  return new Trade({ id: req.params.id })
+  .fetch()
+  .then(trade => {
     if (!trade) {
       return handleError({ code: 404, msg: 'Not Found.', res });
     }
     if (!req.isAuthenticated()) {
       return handleError({ code: 401, msg: 'Unauthorized.' }, res);
     }
-    if (req.user.id === trade.requester) {
+    if (req.user.toJSON().id === trade.toJSON().requester) {
       trade.set('requester_approval', true);
       return trade.save().then(() => res.json(trade));
     }
-    if (req.user.id === trade.requestee) {
+    if (req.user.toJSON().id === trade.toJSON().requestee) {
       trade.set('requestee_approval', true);
       return trade.save().then(() => res.json(trade));
     }

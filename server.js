@@ -106,6 +106,7 @@ app.delete('/api/book', bookController.remove);
 // Trade
 app.get('/api/trade', tradeController.index);
 app.get('/api/trade/:id', tradeController.show);
+app.post('/api/trade/:id/approve', tradeController.approve);
 app.post('/api/trade', tradeController.create);
 app.put('/api/trade/:id', tradeController.update);
 app.delete('/api/trade', tradeController.remove);
@@ -152,7 +153,7 @@ if (app.get('env') === 'production') {
 
 // Set random port for concurrent tests.
 if (app.get('env') === 'test') {
-  app.set('port', 0)
+  app.set('port', null)
 }
 
 app.listen(app.get('port'), () => {
