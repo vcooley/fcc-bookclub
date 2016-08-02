@@ -106,8 +106,9 @@ app.delete('/api/book', bookController.remove);
 // Trade
 app.get('/api/trade', tradeController.index);
 app.get('/api/trade/:id', tradeController.show);
-app.post('/api/trade/:id/approve', tradeController.approve);
 app.post('/api/trade', tradeController.create);
+app.post('/api/trade/:tradeId/select-book/:bookId', tradeController.selectBook);
+app.post('/api/trade/:id/approve', tradeController.approve);
 app.put('/api/trade/:id', tradeController.update);
 app.delete('/api/trade', tradeController.remove);
 

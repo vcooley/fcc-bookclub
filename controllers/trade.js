@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const Trade = require('../models/Trade');
+const Book = require('../models/Book');
 
 function handleError(err, res) {
   return res.status(err.code || 500).send({ msg: err.msg || 'Server Error.' });
@@ -67,31 +68,74 @@ exports.remove = (req, res) => {
     return handleError({ code: 400, msg: 'Bad Request' }, res);
   }
   return Trade.forge({ id: req.params.id }).fetch({ required: true })
-  .then(book => book.destroy())
-  .then(() => res.status(204))
-  .catch(err => handleError(err, res));
+    .then(trade => {
+      if (req.isAuthenticated() && (user.id === trade.requester || user.id === trade.requestee)){
+        book.destroy();
+        return res.status(204);
+      }
+      throw { code: 401, msg: 'Unauthorized.'}
+    })
+    .catch(err => handleError(err, res));
 };
 
 // POST /:id/approve
 exports.approve = (req, res) => {
   return new Trade({ id: req.params.id })
-  .fetch()
-  .then(trade => {
-    if (!trade) {
-      return handleError({ code: 404, msg: 'Not Found.', res });
-    }
-    if (!req.isAuthenticated()) {
-      return handleError({ code: 401, msg: 'Unauthorized.' }, res);
-    }
-    if (req.user.toJSON().id === trade.toJSON().requester) {
-      trade.set('requester_approval', true);
-      return trade.save().then(() => res.json(trade));
-    }
-    if (req.user.toJSON().id === trade.toJSON().requestee) {
-      trade.set('requestee_approval', true);
-      return trade.save().then(() => res.json(trade));
-    }
+    .fetch()
+    .then(trade => {
+      if (!trade) {
+        return handleError({ code: 404, msg: 'Not Found.', res });
+      }
+      if (!req.isAuthenticated()) {
+        return handleError({ code: 401, msg: 'Unauthorized.' }, res);
+      }
+      if (req.user.toJSON().id === trade.toJSON().requester) {
+        trade.set('requester_approval', true);
+        return trade.save().then(() => res.json(trade));
+      }
+      if (req.user.toJSON().id === trade.toJSON().requestee) {
+        trade.set('requestee_approval', true);
+        return trade.save().then(() => res.json(trade));
+      }
 
-    return handleError({ code: 401, msg: 'Unauthorized.' }, res);
-  });
+      return handleError({ code: 401, msg: 'Unauthorized.' }, res);
+    });
+};
+
+// POST /:tradeId/select-book/:bookId
+exports.selectBook = (req, res) => {
+  req.check('tradeId', 'Trade must be an integer.').notEmpty().isInt();
+  req.check('bookId', 'Book must be an integer.').notEmpty().isInt();
+  const errors = req.validationErrors();
+  if (errors) {
+    return handleError(errors, res);
+  }
+  return Trade.forge({ id: req.params.tradeId })
+    .fetch()
+    .then(trade => {
+      const valuesToUpdate = { trade };
+      if (!req.isAuthenticated()) {
+        throw new Error({ code: 401, msg: 'Requires login.' });
+      }
+      if (trade.get('requester') === req.user.id) {
+        valuesToUpdate.user = 'requestee_book';
+        return valuesToUpdate;
+      }
+      if (trade.get('requestee') === req.user.id) {
+        valuesToUpdate.user = 'requester_book';
+        return valuesToUpdate;
+      }
+      throw new Error({ code: 401, msg: 'Unauthorized.' });
+    })
+    .then({ user, trade } => {
+      return Book.forge({ id: req.params.bookId })
+        .fetch({ require: true })
+        .then(book => {
+          trade.set(user, book.get('id'))
+        })
+        .catch(() => {
+          throw new Error({ code: 404, msg: 'Book not found.' });
+        });
+    })
+    .catch(err => handleError(err, res));
 };

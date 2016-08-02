@@ -22,6 +22,13 @@ const testUser = {
   password: 'test',
 };
 
+const testTrade = {
+  requester: 1,
+  requestee: 2,
+  requestee_book: 1,
+
+}
+
 let TOKEN_1;
 
 test.before('Get users\' tokens', async t => {
@@ -51,10 +58,32 @@ test('should add a trade for an authenticated user', async t => {
 });
 
 test('should approve a trade for a user', async t => {
-  const trade = await new Trade({ requester: 1 }).fetch();
+  const trade = await new Trade(testTrade).save();
   return request(makeApp())
     .post(`/api/trade/${trade.id}/approve`)
     .set('Authorization', `Bearer ${TOKEN_1}`)
     .send()
-    .then(res => {t.is(res.status, 200); console.log(res.body);});
+    .then(res => {
+      t.is(res.status, 200);
+      return trade.refresh()
+        .then(updated => t.is(updated.get('requester_approval'), true));
+    });
+});
+
+test('should not approve a trade for unauthenticated users', async t => {
+  const trade = await new Trade(testTrade).save();
+  await request(makeApp())
+    .post(`/api/trade/${trade.id}/approve`)
+    .set('Authorization', 'Bearer poop')
+    .send()
+    .then(res => {
+      t.is(res.status, 401);
+    });
+
+  return trade.refresh()
+    .then(updated => t.is(updated.get('requester_approval'), false));
+});
+
+test('should allow requestee to add book to trade', async t => {
+  return
 });
