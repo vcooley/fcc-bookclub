@@ -37,7 +37,7 @@ exports.create = (req, res) => {
   req.checkBody('requesteeBook', 'Requires requestee book.').notEmpty().isInt();
   const errors = req.validationErrors();
   if (errors) {
-    return handleError({ code: 400, msg: errors })
+    return handleError({ code: 400, msg: errors });
   }
 
   return Trade.forge({
@@ -117,25 +117,29 @@ exports.selectBook = (req, res) => {
       if (!req.isAuthenticated()) {
         throw new Error({ code: 401, msg: 'Requires login.' });
       }
+      // Allow requester to change requestee book
       if (trade.get('requester') === req.user.id) {
-        valuesToUpdate.user = 'requestee_book';
+        valuesToUpdate.userBook = 'requestee_book';
         return valuesToUpdate;
       }
+      // Allow requestee to change requester book
       if (trade.get('requestee') === req.user.id) {
-        valuesToUpdate.user = 'requester_book';
+        valuesToUpdate.userBook = 'requester_book';
         return valuesToUpdate;
       }
       throw new Error({ code: 401, msg: 'Unauthorized.' });
     })
-    .then({ user, trade } => {
+    .then(({ userBook, trade }) => {
       return Book.forge({ id: req.params.bookId })
         .fetch({ require: true })
         .then(book => {
-          trade.set(user, book.get('id'))
+          trade.set(userBook, book.get('id'));
+          return trade.save();
         })
         .catch(() => {
           throw new Error({ code: 404, msg: 'Book not found.' });
         });
     })
+    .then(trade => res.json(trade))
     .catch(err => handleError(err, res));
 };
