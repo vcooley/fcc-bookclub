@@ -1,6 +1,6 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 
 class Header extends React.Component {
@@ -47,7 +47,8 @@ class Header extends React.Component {
           <div id="navbar" className="navbar-collapse collapse">
             <ul className="nav navbar-nav">
               <li><IndexLink to="/" activeStyle={active}>Home</IndexLink></li>
-              <li><Link to="/contact" activeStyle={active}>Contact</Link></li>
+              <li><Link to="/books" activeStyle={active}>My Books</Link></li>
+              <li><Link to="/trades" activeStyle={active}>My Trades</Link></li>
             </ul>
             {rightNav}
           </div>

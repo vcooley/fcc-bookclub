@@ -1,5 +1,6 @@
 export default function messages(state = {}, action) {
   switch (action.type) {
+    case 'BOOK_FETCH_FAILURE':
     case 'LOGIN_FAILURE':
     case 'SIGNUP_FAILURE':
     case 'UPDATE_PROFILE_FAILURE':
