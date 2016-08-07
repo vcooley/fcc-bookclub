@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addBook } from '../../actions/books';
 
 class Add extends React.Component {
   handleSubmit(event) {
-    return event;
+    event.preventDefault();
   }
 
   render() {
@@ -19,4 +21,4 @@ class Add extends React.Component {
   }
 }
 
-export default Add;
+export default connect()(Add);
