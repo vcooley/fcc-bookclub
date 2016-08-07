@@ -2,12 +2,12 @@ import React from 'react';
 
 class Add extends React.Component {
   handleSubmit(event) {
-    return
+    return event;
   }
 
   render() {
     return (
-      <div>
+      <div className="row">
         <form onSumbit={this.handleSubmit.bind(this)}>
           <div className="form-group">
             <input type="text" className="form-control" placeholder="Add a book."/>

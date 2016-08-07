@@ -5973,3 +5973,14 @@ textarea {
   border-radius: 2px;
   letter-spacing: 0.2em;
   text-transform: uppercase; }
+
+.book-list-container {
+  width: 94%;
+  margin: 0 0 3% 3%; }
+
+.book-row {
+  display: flex;
+  justify-content: space-around; }
+
+.book-container {
+  width: 30%; }
