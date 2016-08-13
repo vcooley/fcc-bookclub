@@ -23,6 +23,7 @@ export function getBooks() {
 }
 
 export function addBook(title) {
+  console.log(title)
   return dispatch => {
     return fetch('/api/book', {
       method: 'POST',
@@ -30,9 +31,9 @@ export function addBook(title) {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: {
+      body: JSON.stringify({
         title,
-      },
+      }),
     })
     .then(response => {
       if (!response.ok) {

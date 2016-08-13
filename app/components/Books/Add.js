@@ -3,16 +3,30 @@ import { connect } from 'react-redux';
 import { addBook } from '../../actions/books';
 
 class Add extends React.Component {
-  handleSubmit(event) {
-    event.preventDefault();
+  getInitialState() {
+    return { search: '' };
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.dispatch(addBook(this.state.search));
+  }
+
+  handleTextChange(e) {
+    this.setState({ search: e.target.value });
   }
 
   render() {
     return (
-      <div className="row">
-        <form onSumbit={this.handleSubmit.bind(this)}>
+      <div className="">
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="Add a book."/>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Add a book."
+              onChange={this.handleTextChange}
+            />
             <button type="submit" className="btn btn-default">Add</button>
           </div>
         </form>

@@ -254,16 +254,14 @@ textarea {
 // Book List
 // -------------------------
 
-.book-list-container {
-  width: 94%;
-  margin: 0 0 3% 3%;
-}
-
-.book-row {
+.book-list {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap
 }
 
 .book-container {
   width: 30%;
+  max-width: 20rem;
+  padding: 0 0 1rem 1rem;
 }

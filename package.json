@@ -29,6 +29,7 @@
     "eslint": "^3.1.1",
     "express": "^4.13.4",
     "express-validator": "^2.20.4",
+    "googleapis": "^12.1.0",
     "jade": "^1.11.0",
     "jsonwebtoken": "^5.7.0",
     "knex": "^0.10.0",
