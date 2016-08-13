@@ -16,7 +16,7 @@ class BookList extends React.Component {
       <div className="book-list-container container-fluid">
         <Add />
         <div className="book-list row">
-          {books.map((book, index) => <Book key={ index } book={book} />)}
+          {books.map((book, index) => <Book key={index} book={book} />)}
         </div>
       </div>
     );

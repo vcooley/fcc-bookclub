@@ -5976,10 +5976,10 @@ textarea {
 
 .book-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap; }
 
 .book-container {
   width: 30%;
   max-width: 20rem;
-  padding: 0 0 1rem 1rem; }
+  padding: 1rem 1rem 1rem 1rem; }

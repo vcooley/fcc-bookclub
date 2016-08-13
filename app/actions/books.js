@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
 
 export function getBooks() {
   return (dispatch) => {
@@ -23,7 +23,6 @@ export function getBooks() {
 }
 
 export function addBook(title) {
-  console.log(title)
   return dispatch => {
     return fetch('/api/book', {
       method: 'POST',

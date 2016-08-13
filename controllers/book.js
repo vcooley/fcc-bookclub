@@ -5,6 +5,7 @@ const Book = require('../models/Book');
 const apiKey = process.env.GOOGLE_API_KEY;
 
 function handleError(err, res) {
+  console.error(err);
   return res.status(500).send('Server Error.');
 }
 
@@ -39,18 +40,17 @@ exports.create = (req, res) => {
       return handleError(err, res);
     }
     const result = data.items[0];
-    console.log(result)
-    const isbn = result.industryIdentifiers.find(identifier => {
-      if (identifier.type !== 'ISBN_10' || identifier.type !== 'ISBN_13') {
+    const isbn = result.volumeInfo.industryIdentifiers.find(identifier => {
+      if (identifier.type !== 'ISBN_10' && identifier.type !== 'ISBN_13') {
         return false;
       }
       return true;
     }).identifier;
     const newBook = {
       title: result.volumeInfo.title,
-      description: result.description,
+      description: result.volumeInfo.description,
       isbn: isbn || 0,
-      image_url: result.imageLinks.thumbnail,
+      image_url: result.volumeInfo.imageLinks.thumbnail,
     };
     return Book.forge(newBook)
       .save()

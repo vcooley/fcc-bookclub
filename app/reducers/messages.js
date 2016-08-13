@@ -13,7 +13,7 @@ export default function messages(state = {}, action) {
     case 'UNLINK_FAILURE':
     case 'LINK_FAILURE':
       return {
-        error: action.messages
+        error: action.messages,
       };
     case 'ADD_BOOK_SUCCESS':
     case 'UPDATE_PROFILE_SUCCESS':
@@ -21,13 +21,13 @@ export default function messages(state = {}, action) {
     case 'RESET_PASSWORD_SUCCESS':
     case 'CONTACT_FORM_SUCCESS':
       return {
-        success: action.messages
+        success: action.messages,
       };
     case 'FORGOT_PASSWORD_SUCCESS':
     case 'DELETE_ACCOUNT_SUCCESS':
     case 'UNLINK_SUCCESS':
       return {
-        info: action.messages
+        info: action.messages,
       };
     case 'CLEAR_MESSAGES':
       return {};

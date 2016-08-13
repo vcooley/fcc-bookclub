@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { addBook } from '../../actions/books';
 
 class Add extends React.Component {
-  getInitialState() {
-    return { search: '' };
+  constructor(props) {
+    super(props);
+    this.state = { search: '' };
+    this.handleTextChange = this.handleTextChange.bind(this);
   }
 
   handleSubmit(e) {
