@@ -6,8 +6,4 @@ bookshelf.plugin('virtuals');
 bookshelf.plugin('visibility');
 bookshelf.plugin('registry');
 
-if (process.env.NODE_ENV !== 'test') {
-  knex.migrate.latest();
-}
-
 module.exports = bookshelf;

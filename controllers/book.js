@@ -17,6 +17,12 @@ exports.index = (req, res) => {
     .catch(err => handleError(err, res));
 };
 
+exports.indexOwned = (req, res) => {
+  return Book.forge().fetchAll({ withRelated: ['owners'] }).then(books => {
+    return res.json(books.filter(book => !book.owners.length));
+  });
+};
+
 exports.show = (req, res) => {
   return Book.forge({ id: req.params.id }).fetch()
     .then(book => {
@@ -47,6 +53,7 @@ exports.create = (req, res) => {
       return true;
     }).identifier;
     const newBook = {
+      google_id: result.id,
       title: result.volumeInfo.title,
       description: result.volumeInfo.description,
       isbn: isbn || 0,

@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
 
-export function getBooks() {
+export function getAvailableBooks() {
   return (dispatch) => {
-    return fetch('/api/book')
+    return fetch('/api/book/available')
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -20,6 +20,10 @@ export function getBooks() {
         });
       });
   };
+}
+
+export function getMyBooks() {
+
 }
 
 export function addBook(title) {

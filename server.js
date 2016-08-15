@@ -98,6 +98,7 @@ app.get('/auth/github/callback', userController.authGithubCallback);
 // API routes
 // Books
 app.get('/api/book', bookController.index);
+app.get('/api/book/available', bookController.indexOwned);
 app.get('/api/book/:id', bookController.show);
 app.post('/api/book', bookController.create);
 app.put('/api/book/:id', bookController.update);
