@@ -1,8 +1,12 @@
 import fetch from 'isomorphic-fetch';
+import cookie from 'react-cookie';
 
-export function getAvailableBooks() {
+function getBookResource(url) {
+  const token = cookie.load('token');
   return (dispatch) => {
-    return fetch('/api/book/available')
+    return fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -22,8 +26,12 @@ export function getAvailableBooks() {
   };
 }
 
-export function getMyBooks() {
+export function getAvailableBooks() {
+  return getBookResource('/api/book/available');
+}
 
+export function getMyBooks() {
+  return getBookResource('/api/book/me');
 }
 
 export function addBook(title) {

@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const googleBooks = require('googleapis').books('v1');
 const Book = require('../models/Book');
+const User = require('../models/User');
 
 const apiKey = process.env.GOOGLE_API_KEY;
 
@@ -17,9 +18,15 @@ exports.index = (req, res) => {
     .catch(err => handleError(err, res));
 };
 
-exports.indexOwned = (req, res) => {
-  return Book.forge().fetchAll({ withRelated: ['owners'] }).then(books => {
+exports.indexAvailable = (req, res) => {
+  return Book.forge().fetch({ withRelated: ['owners'] }).then(books => {
     return res.json(books.filter(book => !book.owners.length));
+  });
+};
+
+exports.indexOwned = (req, res) => {
+  return User.forge({ id: req.user.id }).fetch({ withRelated: ['books'] }).then(user => {
+    return res.json(user.toJSON().books);
   });
 };
 

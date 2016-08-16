@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getBooks } from '../../actions/books';
-import _ from 'lodash';
+import { getMyBooks } from '../../actions/books';
 import Book from './Book';
 import Add from './Add';
 
 class BookList extends React.Component {
   componentWillMount() {
-    return this.props.dispatch(getBooks());
+    return this.props.dispatch(getMyBooks());
   }
 
   render() {
