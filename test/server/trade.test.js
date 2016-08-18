@@ -1,22 +1,8 @@
 const test = require('ava');
 const request = require('supertest-as-promised');
-const testUsers = require('./_test-users');
 const Trade = require('../../models/Trade');
-
-const makeApp = () => {
-  return require('../../server');
-};
-
-const getToken = user => {
-  return request(makeApp())
-    .post('/login')
-    .send({
-      email: user.email,
-      password: user.password,
-    })
-    .expect(200)
-    .then(res => res.body.token);
-};
+const makeApp = require('./_app');
+const userFixtures = require('./_test-users');
 
 const testTrade = {
   requester: 1,
@@ -28,11 +14,12 @@ let TOKEN_1;
 let TOKEN_2;
 
 test.before('Get users\' tokens', async t => {
-  [TOKEN_1, TOKEN_2] = await Promise.all([
-    getToken(testUsers[0]),
-    getToken(testUsers[1]),
-  ])
-  .catch(t.fail);
+  try {
+    [TOKEN_1, TOKEN_2] = await userFixtures.getUserTokens();
+  } catch (err) {
+    console.log(err);
+    t.fail();
+  }
   return;
 });
 
