@@ -68,15 +68,15 @@ exports.create = (req, res) => {
         title: result.volumeInfo.title,
         description: result.volumeInfo.description,
         image_url: result.volumeInfo.imageLinks.thumbnail,
-        isbn,
       };
       return Book.forge(newBook);
     })
+      .then(book => book.save())
       .then(book => {
         if (req.isAuthenticated()) {
           book.owners().attach(req.user.id);
         }
-        return book.save();
+        return book;
       })
       .then(book => {
         return res.json(book.toJSON());

@@ -36,11 +36,13 @@ export function getMyBooks() {
 
 export function addBook(title) {
   return dispatch => {
+    const token = cookie.load('token');
     return fetch('/api/book', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({
         title,
