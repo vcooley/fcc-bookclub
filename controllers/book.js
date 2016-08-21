@@ -19,8 +19,8 @@ exports.index = (req, res) => {
 };
 
 exports.indexAvailable = (req, res) => {
-  return Book.forge().fetch({ withRelated: ['owners'] }).then(books => {
-    return res.json(books.filter(book => !book.owners.length));
+  return Book.forge().fetchAll({ withRelated: ['owners'] }).then(books => {
+    return res.json(books.toJSON().filter(book => (book.owners.length > 0)));
   });
 };
 

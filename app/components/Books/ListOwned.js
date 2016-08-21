@@ -1,22 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getMyBooks } from '../../actions/books';
-import Book from './Book';
+import ListContainer from './ListContainer';
 import Add from './Add';
 
-class BookList extends React.Component {
+class ListOwned extends React.Component {
   componentWillMount() {
     return this.props.dispatch(getMyBooks());
   }
 
   render() {
-    const books = this.props.books;
     return (
       <div className="book-list-container container-fluid">
         <Add />
-        <div className="book-list row">
-          {books.map((book, index) => <Book key={index} book={book} />)}
-        </div>
+        <ListContainer books={this.props.books} />
       </div>
     );
   }
@@ -28,8 +25,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-BookList.propTypes = {
+ListOwned.propTypes = {
   books: React.PropTypes.array,
 };
 
-export default connect(mapStateToProps)(BookList);
+export default connect(mapStateToProps)(ListOwned);

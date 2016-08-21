@@ -9,7 +9,8 @@ import Signup from './components/Account/Signup';
 import Profile from './components/Account/Profile';
 import Forgot from './components/Account/Forgot';
 import Reset from './components/Account/Reset';
-import BookList from './components/Books/List';
+import ListOwned from './components/Books/ListOwned';
+import ListAvailable from './components/Books/ListAvailable';
 
 export default function getRoutes(store) {
   const ensureAuthenticated = (nextState, replace) => {
@@ -29,7 +30,7 @@ export default function getRoutes(store) {
   };
   return (
     <Route path="/" component={App}>
-      <IndexRoute component={Home} onLeave={clearMessages}/>
+      <IndexRoute component={ListAvailable} onLeave={clearMessages}/>
       <Route path="/contact" component={Contact} onLeave={clearMessages}/>
       <Route path="/login" component={Login} onEnter={skipIfAuthenticated} onLeave={clearMessages}/>
       <Route path="/signup"
@@ -40,8 +41,8 @@ export default function getRoutes(store) {
         component={Forgot} onEnter={skipIfAuthenticated} onLeave={clearMessages}/>
       <Route path="/reset/:token"
         component={Reset} onEnter={skipIfAuthenticated} onLeave={clearMessages}/>
-      <Route path="/books"
-        component={BookList} onEnter={ensureAuthenticated} onLeave={clearMessages} />
+      <Route path="/mybooks"
+        component={ListOwned} onEnter={ensureAuthenticated} onLeave={clearMessages} />
       <Route path="*" component={NotFound} onLeave={clearMessages}/>
     </Route>
   );
