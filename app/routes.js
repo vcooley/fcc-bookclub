@@ -1,7 +1,6 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 import App from './components/App';
-import Home from './components/Home';
 import Contact from './components/Contact';
 import NotFound from './components/NotFound';
 import Login from './components/Account/Login';
@@ -9,8 +8,13 @@ import Signup from './components/Account/Signup';
 import Profile from './components/Account/Profile';
 import Forgot from './components/Account/Forgot';
 import Reset from './components/Account/Reset';
-import ListOwned from './components/Books/ListOwned';
-import ListAvailable from './components/Books/ListAvailable';
+import Owned from './components/Books/Owned';
+import Available from './components/Books/Available';
+import TradeContainer from './components/Trades/Container';
+import Pending from './components/Trades/Pending';
+import Requests from './components/Trades/Requests';
+import Completed from './components/Trades/Completed';
+
 
 export default function getRoutes(store) {
   const ensureAuthenticated = (nextState, replace) => {
@@ -30,7 +34,7 @@ export default function getRoutes(store) {
   };
   return (
     <Route path="/" component={App}>
-      <IndexRoute component={ListAvailable} onLeave={clearMessages}/>
+      <IndexRoute component={Available} onLeave={clearMessages}/>
       <Route path="/contact" component={Contact} onLeave={clearMessages}/>
       <Route path="/login" component={Login} onEnter={skipIfAuthenticated} onLeave={clearMessages}/>
       <Route path="/signup"
@@ -42,7 +46,15 @@ export default function getRoutes(store) {
       <Route path="/reset/:token"
         component={Reset} onEnter={skipIfAuthenticated} onLeave={clearMessages}/>
       <Route path="/mybooks"
-        component={ListOwned} onEnter={ensureAuthenticated} onLeave={clearMessages} />
+        component={Owned} onEnter={ensureAuthenticated} onLeave={clearMessages} />
+      <Route path="/trades" component={TradeContainer}>
+        <Route path="pending"
+          component={Pending} onEnter={clearMessages} onLeave={clearMessages} />
+        <Route path="requests"
+          component={Requests} onEnter={clearMessages} onLeave={clearMessages} />
+        <Route path="completed"
+          component={Completed} onEnter={clearMessages} onLeave={clearMessages} />
+      </Route>
       <Route path="*" component={NotFound} onLeave={clearMessages}/>
     </Route>
   );

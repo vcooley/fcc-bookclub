@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getMyBooks } from '../../actions/books';
-import ListContainer from './ListContainer';
+import List from './List';
 import Add from './Add';
 
-class ListOwned extends React.Component {
+class Owned extends React.Component {
   componentWillMount() {
     return this.props.dispatch(getMyBooks());
   }
@@ -13,7 +13,7 @@ class ListOwned extends React.Component {
     return (
       <div className="book-list-container container-fluid">
         <Add />
-        <ListContainer books={this.props.books} />
+        <List books={this.props.books} />
       </div>
     );
   }
@@ -25,8 +25,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-ListOwned.propTypes = {
+Owned.propTypes = {
   books: React.PropTypes.array,
 };
 
-export default connect(mapStateToProps)(ListOwned);
+export default connect(mapStateToProps)(Owned);
