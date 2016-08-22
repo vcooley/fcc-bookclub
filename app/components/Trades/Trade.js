@@ -4,7 +4,9 @@ import Book from '../Books/Book';
 class Trade extends React.Component {
   render() {
     return (
-      <Book book={this.props.trade}/>
+      <div>
+        <Book book={this.props.trade}/>
+      </div>
     );
   }
 }

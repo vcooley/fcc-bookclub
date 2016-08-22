@@ -28,6 +28,36 @@ exports.show = (req, res) => {
   .catch(err => handleError(err, res));
 };
 
+// GET /pending
+exports.showPending = (req, res) => {
+  return Trade.forge({ requester: req.user.id }).fetchAll().then(trades => {
+    return res.json(trades.toJSON().filter(trade => {
+      return !(trade.requester_approval && trade.requestee_approval);
+    }));
+  });
+};
+
+// GET /requests
+exports.showRequests = (req, res) => {
+  return Trade.forge({ requestee: req.user.id }).fetchAll().then(trades => {
+    return res.json(trades.toJSON().filter(trade => {
+      return !(trade.requester_approval && trade.requestee_approval);
+    }));
+  });
+};
+
+// GET /completed
+exports.showCompleted = (req, res) => {
+  return Trade.where('requester', req.user.id, 'or', 'requestee', req.user.id)
+    .fetchAll()
+    .then(trades => {
+      return res.json(trades.toJSON().filter(trade => {
+        return (trade.requester_approval && trade.requestee_approval);
+      }));
+    });
+};
+
+
 // POST /
 exports.create = (req, res) => {
   if (!req.isAuthenticated()) {
@@ -73,7 +103,7 @@ exports.remove = (req, res) => {
         book.destroy();
         return res.status(204);
       }
-      throw { code: 401, msg: 'Unauthorized.'}
+      throw { code: 401, msg: 'Unauthorized.' };
     })
     .catch(err => handleError(err, res));
 };
