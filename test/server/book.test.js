@@ -2,7 +2,7 @@ const test = require('ava');
 const request = require('supertest-as-promised');
 const Book = require('../../models/Book');
 const makeApp = require('./_app');
-const userFixtures = require('./_test-users');
+const userFixtures = require('./_users');
 
 const testUsers = userFixtures.users;
 

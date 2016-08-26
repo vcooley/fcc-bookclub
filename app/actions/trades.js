@@ -5,9 +5,7 @@ import cookie from 'react-cookie';
 export const UPDATE_TRADES = 'UPDATE_TRADES';
 
 export function getPending() {
-  return (dispatch) => {
-    return fetch()
-  };
+
 }
 
 export function getCompleted() {

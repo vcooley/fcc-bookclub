@@ -2,7 +2,7 @@ const test = require('ava');
 const request = require('supertest-as-promised');
 const Trade = require('../../models/Trade');
 const makeApp = require('./_app');
-const userFixtures = require('./_test-users');
+const userFixtures = require('./_users');
 
 const testTrade = {
   requester: 1,
@@ -21,6 +21,15 @@ test.before('Get users\' tokens', async t => {
     t.fail();
   }
   return;
+});
+
+test('should get a user\'s pending trades', t => {
+  return request(makeApp())
+    .get('/api/trade')
+    .set('Authorization', `Bearer ${TOKEN_1}`)
+    .then(res => {
+
+    });
 });
 
 test('should not add a trade for unauthenticated user', t => {

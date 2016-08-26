@@ -25,11 +25,11 @@ require('babel-core/register');
 require('babel-polyfill');
 
 // Models
-var User = require('./models/User');
+const User = require('./models/User');
 
 // Controllers
-var userController = require('./controllers/user');
-var contactController = require('./controllers/contact');
+const userController = require('./controllers/user');
+const contactController = require('./controllers/contact');
 const bookController = require('./controllers/book');
 const tradeController = require('./controllers/trade');
 

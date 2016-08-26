@@ -30,7 +30,7 @@ exports.show = (req, res) => {
 
 // GET /pending
 exports.showPending = (req, res) => {
-  return Trade.forge({ requester: req.user.id }).fetchAll().then(trades => {
+  return Trade.where({ requester: req.user.id }).fetchAll().then(trades => {
     return res.json(trades.toJSON().filter(trade => {
       return !(trade.requester_approval && trade.requestee_approval);
     }));
@@ -39,7 +39,7 @@ exports.showPending = (req, res) => {
 
 // GET /requests
 exports.showRequests = (req, res) => {
-  return Trade.forge({ requestee: req.user.id }).fetchAll().then(trades => {
+  return Trade.where({ requestee: req.user.id }).fetchAll().then(trades => {
     return res.json(trades.toJSON().filter(trade => {
       return !(trade.requester_approval && trade.requestee_approval);
     }));
@@ -48,7 +48,7 @@ exports.showRequests = (req, res) => {
 
 // GET /completed
 exports.showCompleted = (req, res) => {
-  return Trade.where('requester', req.user.id, 'or', 'requestee', req.user.id)
+  return Trade.query({ where: { requester: req.user.id }, orWhere: { requestee: req.user.id } })
     .fetchAll()
     .then(trades => {
       return res.json(trades.toJSON().filter(trade => {
