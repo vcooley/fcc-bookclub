@@ -7,8 +7,9 @@ module.exports = {
     "no-labels": 2,
     "no-empty-label": 0,
     "no-param-reassign": 0,
+    "quote-props": 0,
     "space-after-keywords": 0,
-    "space-return-throw-case": 0
+    "space-return-throw-case": 0,
   },
   "env": {
     "node": true,

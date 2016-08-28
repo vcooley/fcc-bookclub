@@ -57,17 +57,13 @@ exports.showCompleted = (req, res) => {
     });
 };
 
-
 // POST /
 exports.create = (req, res) => {
-  if (!req.isAuthenticated()) {
-    return handleError({ code: 401, msg: 'Requires login.' }, res);
-  }
   req.checkBody('requestee', 'Requires requestee.').notEmpty().isInt();
   req.checkBody('requesteeBook', 'Requires requestee book.').notEmpty().isInt();
   const errors = req.validationErrors();
   if (errors) {
-    return handleError({ code: 400, msg: errors });
+    return handleError({ code: 400, msg: errors }, res);
   }
 
   return Trade.forge({
@@ -99,11 +95,11 @@ exports.remove = (req, res) => {
   }
   return Trade.forge({ id: req.params.id }).fetch({ required: true })
     .then(trade => {
-      if (req.isAuthenticated() && (user.id === trade.requester || user.id === trade.requestee)){
-        book.destroy();
+      if (req.user.id === trade.requester || req.user.id === trade.requestee) {
+        trade.destroy();
         return res.status(204);
       }
-      throw { code: 401, msg: 'Unauthorized.' };
+      throw new Error({ code: 401, msg: 'Unauthorized.' });
     })
     .catch(err => handleError(err, res));
 };

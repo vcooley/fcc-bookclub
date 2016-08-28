@@ -1,5 +1,7 @@
 export default function messages(state = {}, action) {
   switch (action.type) {
+    case 'ADD_TRADE_FAILURE':
+    case 'REMOVE_TRADE_FAILURE':
     case 'FETCH_BOOK_FAILURE':
     case 'ADD_BOOK_ERROR':
     case 'LOGIN_FAILURE':
@@ -16,6 +18,8 @@ export default function messages(state = {}, action) {
         error: action.messages,
       };
     case 'ADD_BOOK_SUCCESS':
+    case 'ADD_TRADE_SUCCESS':
+    case 'REMOVE_TRADE_SUCCESS':
     case 'UPDATE_PROFILE_SUCCESS':
     case 'CHANGE_PASSWORD_SUCCESS':
     case 'RESET_PASSWORD_SUCCESS':

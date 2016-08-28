@@ -111,11 +111,11 @@ app.get('/api/trade/pending', userController.ensureAuthenticated, tradeControlle
 app.get('/api/trade/requests', userController.ensureAuthenticated, tradeController.showRequests);
 app.get('/api/trade/completed', userController.ensureAuthenticated, tradeController.showCompleted);
 app.get('/api/trade/:id', tradeController.show);
-app.post('/api/trade', tradeController.create);
+app.post('/api/trade', userController.ensureAuthenticated, tradeController.create);
 app.post('/api/trade/:tradeId/select-book/:bookId', tradeController.selectBook);
 app.post('/api/trade/:id/approve', tradeController.approve);
 app.put('/api/trade/:id', tradeController.update);
-app.delete('/api/trade', tradeController.remove);
+app.delete('/api/trade', userController.ensureAuthenticated, tradeController.remove);
 
 
 // React server rendering
@@ -159,7 +159,7 @@ if (app.get('env') === 'production') {
 
 // Set random port for concurrent tests.
 if (app.get('env') === 'test') {
-  app.set('port', null)
+  app.set('port', null);
 }
 
 app.listen(app.get('port'), () => {

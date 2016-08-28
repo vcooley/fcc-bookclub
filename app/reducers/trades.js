@@ -7,7 +7,7 @@ const defaultState = {
     updated: null,
     trades: [],
   },
-  requested: {
+  requests: {
     updated: null,
     trades: [],
   },

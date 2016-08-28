@@ -25,10 +25,37 @@ test.before('Get users\' tokens', async t => {
 
 test('should get a user\'s pending trades', t => {
   return request(makeApp())
-    .get('/api/trade')
+    .get('/api/trade/pending')
     .set('Authorization', `Bearer ${TOKEN_1}`)
     .then(res => {
+      res.body.map(trade => {
+        t.is(trade.requester, 1);
+        t.false(trade.requester_approval && trade.requestee_approval);
+      });
+    });
+});
 
+test('should get a user\'s trade requests', t => {
+  return request(makeApp())
+    .get('/api/trade/requests')
+    .set('Authorization', `Bearer ${TOKEN_1}`)
+    .then(res => {
+      res.body.map(trade => {
+        t.is(trade.requestee, 1);
+        t.false(trade.requester_approval && trade.requestee_approval);
+      });
+    });
+});
+
+test('should get a user\'s completed trades', t => {
+  return request(makeApp())
+    .get('/api/trade/completed')
+    .set('Authorization', `Bearer ${TOKEN_1}`)
+    .then(res => {
+      res.body.map(trade => {
+        t.true(trade.requester === 1 || trade.requestee === 1);
+        t.true(trade.requester_approval && trade.requestee_approval);
+      });
     });
 });
 
