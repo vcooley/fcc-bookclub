@@ -1,14 +1,14 @@
 const defaultState = {
   completed: {
-    updated: null,
+    updated: undefined,
     trades: [],
   },
   pending: {
-    updated: null,
+    updated: undefined,
     trades: [],
   },
   requests: {
-    updated: null,
+    updated: undefined,
     trades: [],
   },
 };
@@ -17,6 +17,8 @@ export default function trades(state = defaultState, action) {
   switch (action.type) {
     case 'UPDATE_TRADES':
       return Object.assign({}, state, action.data);
+    case 'REMOVE_TRADE':
+      return state[action.domain].trades.filter(trade => trade.id !== action.tradeId);
     default:
       return state;
   }

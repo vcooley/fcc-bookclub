@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 import cookie from 'react-cookie';
 
 export const UPDATE_TRADES = 'UPDATE_TRADES';
+export const REMOVE_TRADE = 'REMOVE_TRADE';
 
 const loadToken = () => cookie.load('token');
 
@@ -13,7 +14,6 @@ function checkStatus(response) {
   error.response = response;
   throw error;
 }
-
 
 function getTradeResource(endpoint) {
   const token = cookie.load('token');
@@ -27,15 +27,29 @@ function getTradeResource(endpoint) {
     .then(res => res.json());
 }
 
+function deleteTradeResource(tradeId) {
+  return fetch(`/api/trade/${tradeId}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${loadToken()}`,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(checkStatus)
+    .then(res => res.json());
+}
+
 export function getPending() {
   return (dispatch) => {
     return getTradeResource('/api/trade/pending')
       .then(data => {
         return dispatch({
           type: UPDATE_TRADES,
-          pending: {
-            updated: Date.now(),
-            trades: data,
+          data: {
+            pending: {
+              trades: data,
+              updated: Date.now(),
+            },
           },
         });
       });
@@ -70,21 +84,43 @@ export function makePending(trade) {
   };
 }
 
-export function approvePending() {
-
-}
-
-export function declinePending(tradeId) {
+export function approvePending(tradeId) {
   return (dispatch) => {
-    return fetch(`/api/trade/${tradeId}`, {
-      method: 'DELETE',
+    return fetch(`/api/trade/${tradeId}/approve`, {
+      method: 'POST',
       headers: {
         'Authorization': `Bearer ${loadToken()}`,
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
     })
       .then(checkStatus)
       .then(res => res.json())
+      .then(() => {
+        return dispatch({
+          type: 'ADD_TRADE_SUCCESS',
+          messages: ['Successful approved trade.'],
+        });
+      })
+      .catch(() => {
+        return dispatch({
+          type: 'ADD_TRADE_FAILURE',
+          messages: ['There was a problem approving that trade.'],
+        });
+      });
+  };
+}
+
+export function declinePending(tradeId) {
+  return (dispatch) => {
+    return deleteTradeResource(tradeId)
+      .then(() => {
+        return dispatch({
+          type: REMOVE_TRADE,
+          domain: 'pending',
+          tradeId,
+        });
+      })
       .then(() => {
         return dispatch({
           type: 'REMOVE_TRADE_SUCCESS',
@@ -106,21 +142,67 @@ export function getRequests() {
       .then(data => {
         return dispatch({
           type: UPDATE_TRADES,
-          requests: {
-            updated: Date.now(),
-            trades: data,
+          data: {
+            requests: {
+              trades: data,
+              updated: Date.now(),
+            },
           },
         });
       });
   };
 }
 
-export function acceptRequest() {
-
+export function approveRequest(tradeId) {
+  return (dispatch) => {
+    return fetch(`/api/trade/${tradeId}/approve`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${loadToken()}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(checkStatus)
+      .then(res => res.json())
+      .then(() => {
+        dispatch({
+          type: 'ADD_TRADE_SUCCESS',
+          messages: ['Successful accepted a trade.'],
+        });
+      })
+      .catch(() => {
+        return dispatch({
+          type: 'ADD_TRADE_FAILURE',
+          messages: ['There was a problem accepting that trade.'],
+        });
+      });
+  };
 }
 
-export function declineRequest() {
-
+export function declineRequest(tradeId) {
+  return (dispatch) => {
+    return deleteTradeResource(tradeId)
+      .then(() => {
+        return dispatch({
+          type: REMOVE_TRADE,
+          domain: 'requests',
+          tradeId,
+        });
+      })
+      .then(() => {
+        return dispatch({
+          type: 'REMOVE_TRADE_SUCCESS',
+          messages: ['Trade successfully removed.'],
+        });
+      })
+      .catch(() => {
+        return dispatch({
+          type: 'REMOVE_TRADE_FAILURE',
+          messages: ['There was a problem removing that trade.'],
+        });
+      });
+  };
 }
 
 export function getCompleted() {
@@ -129,9 +211,11 @@ export function getCompleted() {
       .then(data => {
         return dispatch({
           type: UPDATE_TRADES,
-          completed: {
-            updated: Date.now(),
-            trades: data,
+          data: {
+            completed: {
+              trades: data,
+              updated: Date.now(),
+            },
           },
         });
       });

@@ -47,7 +47,7 @@ export default function getRoutes(store) {
         component={Reset} onEnter={skipIfAuthenticated} onLeave={clearMessages}/>
       <Route path="/mybooks"
         component={Owned} onEnter={ensureAuthenticated} onLeave={clearMessages} />
-      <Route path="/trades" component={TradeContainer}>
+      <Route path="/trades" onEnter={ensureAuthenticated} component={TradeContainer}>
         <Route path="pending"
           component={Pending} onEnter={clearMessages} onLeave={clearMessages} />
         <Route path="requests"
