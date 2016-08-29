@@ -30,26 +30,30 @@ exports.show = (req, res) => {
 
 // GET /pending
 exports.showPending = (req, res) => {
-  return Trade.where({ requester: req.user.id }).fetchAll().then(trades => {
-    return res.json(trades.toJSON().filter(trade => {
-      return !(trade.requester_approval && trade.requestee_approval);
-    }));
-  });
+  return Trade.where({ requester: req.user.id })
+    .fetchAll({ withRelated: ['requester_book', 'requestee_book'] })
+    .then(trades => {
+      return res.json(trades.toJSON().filter(trade => {
+        return !(trade.requester_approval && trade.requestee_approval);
+      }));
+    });
 };
 
 // GET /requests
 exports.showRequests = (req, res) => {
-  return Trade.where({ requestee: req.user.id }).fetchAll().then(trades => {
-    return res.json(trades.toJSON().filter(trade => {
-      return !(trade.requester_approval && trade.requestee_approval);
-    }));
-  });
+  return Trade.where({ requestee: req.user.id })
+    .fetchAll({ withRelated: ['requester_book', 'requestee_book'] })
+    .then(trades => {
+      return res.json(trades.toJSON().filter(trade => {
+        return !(trade.requester_approval && trade.requestee_approval);
+      }));
+    });
 };
 
 // GET /completed
 exports.showCompleted = (req, res) => {
   return Trade.query({ where: { requester: req.user.id }, orWhere: { requestee: req.user.id } })
-    .fetchAll()
+    .fetchAll({ withRelated: ['requester_book', 'requestee_book'] })
     .then(trades => {
       return res.json(trades.toJSON().filter(trade => {
         return (trade.requester_approval && trade.requestee_approval);

@@ -4,8 +4,13 @@ import Book from '../Books/Book';
 class Trade extends React.Component {
   render() {
     return (
-      <div>
-        <Book book={this.props.trade}/>
+      <div className="trade-container row">
+        <div className="trade-book col-xs-6">
+          <Book book={this.props.trade.requester_book}/>
+        </div>
+        <div className="trade-book col-xs-6">
+          <Book book={this.props.trade.requestee_book} />
+        </div>
       </div>
     );
   }

@@ -5,16 +5,16 @@ require('./Book');
 
 const Trade = bookshelf.Model.extend({
   tableName: 'trades',
-  requester: () => {
+  requester() {
     return this.belongsTo('User', 'requester');
   },
-  requestee: () => {
+  requestee() {
     return this.belongsTo('User', 'requestee');
   },
-  requester_book: () => {
+  requester_book() {
     return this.belongsTo('Book', 'requester_book');
   },
-  requestee_book: () => {
+  requestee_book() {
     return this.belongsTo('Book', 'requestee_book');
   },
 });
