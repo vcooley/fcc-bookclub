@@ -115,7 +115,7 @@ app.post('/api/trade', userController.ensureAuthenticated, tradeController.creat
 app.post('/api/trade/:tradeId/select-book/:bookId', tradeController.selectBook);
 app.post('/api/trade/:id/approve', tradeController.approve);
 app.put('/api/trade/:id', tradeController.update);
-app.delete('/api/trade', userController.ensureAuthenticated, tradeController.remove);
+app.delete('/api/trade/:id', userController.ensureAuthenticated, tradeController.remove);
 
 
 // React server rendering

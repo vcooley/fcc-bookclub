@@ -94,17 +94,18 @@ exports.update = (req, res) => {
 
 // DELETE /:id
 exports.remove = (req, res) => {
-  if (!req.body.id) {
+  if (!req.params.id) {
     return handleError({ code: 400, msg: 'Bad Request' }, res);
   }
   return Trade.forge({ id: req.params.id }).fetch({ required: true })
     .then(trade => {
-      if (req.user.id === trade.requester || req.user.id === trade.requestee) {
-        trade.destroy();
-        return res.status(204);
+      const tradeJson = trade.toJSON();
+      if (req.user.id === tradeJson.requester || req.user.id === tradeJson.requestee) {
+        return trade.destroy();
       }
       throw new Error({ code: 401, msg: 'Unauthorized.' });
     })
+    .then(() => res.status(204).send('Removed'))
     .catch(err => handleError(err, res));
 };
 
