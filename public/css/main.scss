@@ -280,8 +280,12 @@ textarea {
 // -------------------------
 
 .trade-container {
-  width: 50%;
+  background-color: hsl(31, 41%, 90%);
+  border: 2px solid;
+  border-radius: 5px;
+  width: 100%;
   max-width: 40rem;
+  margin-top: 2rem;
   padding: 1rem 1rem 1rem 1rem;
 }
 

@@ -7,23 +7,29 @@ class Trade extends React.Component {
     let buttons;
     if (onApprove && onDecline) {
       buttons = (
-        <div>
-          <button onClick={onApprove.bind(this, trade.id)} className="btn btn-success">
-            <span className="glyphicon glyphicon-ok"></span>
-          </button>
-          <button onClick={onDecline.bind(this, trade.id)} className="btn btn-danger">
-            <span className="glyphicon glyphicon-remove"></span>
-          </button>
+        <div className="row">
+          <div className="col-xs-1">
+            <button onClick={onApprove.bind(this, trade.id)} className="btn btn-success">
+              <span className="glyphicon glyphicon-ok"></span>
+            </button>
+          </div>
+          <div className="col-xs-1 col-xs-offset-9">
+            <button onClick={onDecline.bind(this, trade.id)} className="btn btn-danger">
+              <span className="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
         </div>
       );
     }
     return (
-      <div className="trade-container row">
-        <div className="trade-book col-xs-6">
-          <Book book={this.props.trade.requester_book}/>
-        </div>
-        <div className="trade-book col-xs-6">
-          <Book book={this.props.trade.requestee_book} />
+      <div className="trade-container container">
+        <div className=" row">
+          <div className="trade-book col-xs-6">
+            <Book book={this.props.trade.requester_book}/>
+          </div>
+          <div className="trade-book col-xs-6">
+            <Book book={this.props.trade.requestee_book} />
+          </div>
         </div>
         {buttons}
       </div>
