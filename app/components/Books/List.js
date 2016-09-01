@@ -9,8 +9,8 @@ class ListContainer extends React.Component {
         <div className="book-list row">
           {books.map((book, index) => {
             return (
-              <div className="book-container">
-                <Book key={index} book={book} />
+              <div key={index} className="book-container">
+                <Book book={book} />
               </div>
             );
           })}

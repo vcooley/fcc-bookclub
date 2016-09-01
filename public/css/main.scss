@@ -280,8 +280,9 @@ textarea {
 // -------------------------
 
 .trade-container {
-  background-color: hsl(31, 41%, 90%);
+  background-color: #FEFEFC;
   border: 2px solid;
+  border-color: #555555;
   border-radius: 5px;
   width: 100%;
   max-width: 40rem;
@@ -291,5 +292,6 @@ textarea {
 
 .trade-book {
   width: 45%;
+  margin: auto;
   max-width: 19rem;
 }

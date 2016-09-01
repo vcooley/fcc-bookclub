@@ -5993,8 +5993,9 @@ textarea {
   margin: auto; }
 
 .trade-container {
-  background-color: #f0e6db;
+  background-color: #FEFEFC;
   border: 2px solid;
+  border-color: #555555;
   border-radius: 5px;
   width: 100%;
   max-width: 40rem;
@@ -6003,4 +6004,5 @@ textarea {
 
 .trade-book {
   width: 45%;
+  margin: auto;
   max-width: 19rem; }
