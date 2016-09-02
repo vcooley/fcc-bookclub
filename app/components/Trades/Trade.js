@@ -7,15 +7,17 @@ class Trade extends React.Component {
     let buttons;
     if (onApprove && onDecline) {
       buttons = (
-        <div className="row">
+        <div className="row trade-button-row">
           <div className="col-xs-1">
             <button onClick={onApprove.bind(this, trade.id)} className="btn btn-success">
               <span className="glyphicon glyphicon-ok"></span>
+              Approve
             </button>
           </div>
           <div className="col-xs-1 col-xs-offset-9">
             <button onClick={onDecline.bind(this, trade.id)} className="btn btn-danger">
               <span className="glyphicon glyphicon-remove"></span>
+              Decline
             </button>
           </div>
         </div>

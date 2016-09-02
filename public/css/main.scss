@@ -286,7 +286,7 @@ textarea {
   border-radius: 5px;
   width: 100%;
   max-width: 40rem;
-  margin-top: 2rem;
+  margin: 2rem rem1 1rem 1rem;
   padding: 1rem 1rem 1rem 1rem;
 }
 
@@ -294,4 +294,12 @@ textarea {
   width: 45%;
   margin: auto;
   max-width: 19rem;
+}
+
+.trade-button-row {
+  margin-top: 1rem;
+}
+
+.trade-button {
+  float: right
 }
