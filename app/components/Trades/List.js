@@ -6,8 +6,8 @@ class List extends React.Component {
   render() {
     const { trades, onApprove, onDecline } = this.props;
     return(
-      <div className="container-fluid">
-        <div className="book-list row">
+      <div className="">
+        <div className="book-list">
           {trades.map((trade, index) => <Trade key={index}
             trade={trade} onApprove={onApprove} onDecline={onDecline} />)}
         </div>

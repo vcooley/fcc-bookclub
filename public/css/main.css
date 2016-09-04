@@ -5975,6 +5975,7 @@ textarea {
   text-transform: uppercase; }
 
 .book-list-container {
+  margin: auto;
   max-width: 1140px; }
 
 .book-list {
@@ -5996,6 +5997,7 @@ textarea {
   margin: auto; }
 
 .trade-list-container {
+  margin: auto;
   max-width: 1140px; }
 
 .trade-container {
@@ -6008,12 +6010,16 @@ textarea {
   margin: 2rem 1rem 1rem 1rem;
   padding: 1rem 1rem 1rem 1rem; }
 
+.trade-book-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+
 .trade-book {
-  width: 45%;
-  margin: auto;
-  max-width: 19rem; }
+  width: 45%; }
 
 .trade-button-row {
+  clear: both;
   margin-top: 1rem; }
 
 .trade-button {

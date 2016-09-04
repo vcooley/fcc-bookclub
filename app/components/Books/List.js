@@ -5,8 +5,7 @@ class ListContainer extends React.Component {
   render() {
     const books = this.props.books;
     return (
-      <div className="container-fluid">
-        <div className="book-list row">
+        <div className="book-list">
           {books.map((book, index) => {
             return (
               <div key={index} className="book-container">
@@ -15,7 +14,6 @@ class ListContainer extends React.Component {
             );
           })}
         </div>
-      </div>
     );
   }
 }

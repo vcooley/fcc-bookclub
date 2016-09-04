@@ -255,6 +255,7 @@ textarea {
 // -------------------------
 
 .book-list-container {
+  margin: auto;
   max-width: 1140px;
 }
 
@@ -284,6 +285,7 @@ textarea {
 // -------------------------
 
 .trade-list-container {
+  margin: auto;
   max-width: 1140px;
 }
 
@@ -298,13 +300,18 @@ textarea {
   padding: 1rem 1rem 1rem 1rem;
 }
 
+.trade-book-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .trade-book {
   width: 45%;
-  margin: auto;
-  max-width: 19rem;
 }
 
 .trade-button-row {
+  clear: both;
   margin-top: 1rem;
 }
 
@@ -319,4 +326,3 @@ textarea {
 .decline-button {
   float: right;
 }
-

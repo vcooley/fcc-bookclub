@@ -10,26 +10,26 @@ class Trade extends React.Component {
         <div className="trade-button-row">
           <div className="accept-button">
             <button onClick={onApprove.bind(this, trade.id)} className="btn btn-success">
-              <span className="glyphicon glyphicon-ok"></span>
-              Approve
+              <span className="glyphicon glyphicon-ok align-middle"></span>
+              &nbsp;Approve
             </button>
           </div>
           <div className="decline-button">
             <button onClick={onDecline.bind(this, trade.id)} className="btn btn-danger">
-              <span className="glyphicon glyphicon-remove"></span>
-              Decline
+              <span className="glyphicon glyphicon-remove align-middle"></span>
+              &nbsp;Decline
             </button>
           </div>
         </div>
       );
     }
     return (
-      <div className="trade-container container">
-        <div className=" row">
-          <div className="trade-book col-xs-6">
+      <div className="trade-container">
+        <div className="trade-book-container">
+          <div className="trade-book">
             <Book book={this.props.trade.requester_book}/>
           </div>
-          <div className="trade-book col-xs-6">
+          <div className="trade-book">
             <Book book={this.props.trade.requestee_book} />
           </div>
         </div>

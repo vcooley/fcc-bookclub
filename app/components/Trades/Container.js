@@ -4,7 +4,7 @@ import Nav from './Nav';
 class TradeContainer extends React.Component {
   render() {
     return (
-      <div className="trade-list-container container-fluid">
+      <div className="trade-list-container">
         <Nav />
         {this.props.children}
       </div>
