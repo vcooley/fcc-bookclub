@@ -13,6 +13,13 @@ const testTrade = {
 let TOKEN_1;
 let TOKEN_2;
 
+function approveTrade(tradeId, token) {
+  return request(makeApp())
+    .post(`/api/trade/${tradeId}/approve`)
+    .set('Authorization', `Bearer ${token}`)
+    .send();
+}
+
 test.before('Get users\' tokens', async t => {
   try {
     [TOKEN_1, TOKEN_2] = await userFixtures.getUserTokens();
@@ -127,4 +134,60 @@ test('should allow requestee and requester to add/edit book to trade', async t =
     });
   return trade.refresh()
     .then(updated => t.is(updated.get('requester_book'), 1));
+});
+
+test('should request trade as one user, then accept it as another', async t => {
+  const app = makeApp();
+  const tradeId = await request(app)
+    .post('/api/trade/')
+    .set('Authorization', `Bearer ${TOKEN_1}`)
+    .send({ requestee: 2, requesteeBook: 1 })
+    .then(res => {
+      t.is(res.status, 200);
+      t.truthy(res.body.id);
+      return res.body.id;
+    });
+  await approveTrade(tradeId, TOKEN_1)
+    .then(res => {
+      return t.is(res.status, 200);
+    });
+  await approveTrade(tradeId, TOKEN_2)
+    .then(res => {
+      return t.is(res.status, 200);
+    });
+  return Trade.forge({ id: tradeId }).fetch()
+    .then(trade => trade.toJSON())
+    .then(trade => {
+      t.true(trade.requester_approval);
+      t.true(trade.requestee_approval);
+    });
+});
+
+test('should request trade as one user, approve it, then decline it as another', async t => {
+  const app = makeApp();
+  const tradeId = await request(app)
+    .post('/api/trade/')
+    .set('Authorization', `Bearer ${TOKEN_1}`)
+    .send({ requestee: 2, requesteeBook: 1 })
+    .then(res => {
+      t.is(res.status, 200);
+      t.truthy(res.body.id);
+      return res.body.id;
+    });
+  await approveTrade(tradeId, TOKEN_1)
+    .then(res => {
+      return t.is(res.status, 200);
+    });
+  await request(app)
+    .delete(`/api/trade/${tradeId}`)
+    .set('Authorization', `Bearer ${TOKEN_2}`)
+    .then(res => t.is(res.status, 204));
+
+  return Trade.forge({ id: tradeId }).fetch()
+    .then(trade => {
+      if (trade) {
+        return t.fail();
+      }
+      return t.pass();
+    });
 });

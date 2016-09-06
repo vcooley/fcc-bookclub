@@ -76,6 +76,7 @@ exports.create = (req, res) => {
     requestee_book: req.body.requesteeBook,
   })
   .save()
+  .then(trade => trade.fetch())
   .then(trade => res.json(trade.toJSON()))
   .catch(err => handleError(err, res));
 };
@@ -115,18 +116,16 @@ exports.approve = (req, res) => {
     .fetch()
     .then(trade => {
       if (!trade) {
+        console.log('not found')
         return handleError({ code: 404, msg: 'Not Found.', res });
       }
-      if (!req.isAuthenticated()) {
-        return handleError({ code: 401, msg: 'Unauthorized.' }, res);
-      }
-      if (req.user.toJSON().id === trade.toJSON().requester) {
+      if (req.user.id === trade.toJSON().requester) {
         trade.set('requester_approval', true);
-        return trade.save().then(() => res.json(trade));
+        return trade.save().then(updated => res.json(updated.toJSON()));
       }
-      if (req.user.toJSON().id === trade.toJSON().requestee) {
+      if (req.user.id === trade.toJSON().requestee) {
         trade.set('requestee_approval', true);
-        return trade.save().then(() => res.json(trade));
+        return trade.save().then(updated => res.json(updated.toJSON()));
       }
 
       return handleError({ code: 401, msg: 'Unauthorized.' }, res);

@@ -7,7 +7,7 @@ class List extends React.Component {
     const { trades, onApprove, onDecline } = this.props;
     return(
       <div className="">
-        <div className="book-list">
+        <div className="trade-list">
           {trades.map((trade, index) => <Trade key={index}
             trade={trade} onApprove={onApprove} onDecline={onDecline} />)}
         </div>

@@ -11,8 +11,6 @@ var ReactDOM = require('react-dom/server');
 var Router = require('react-router');
 var Provider = require('react-redux').Provider;
 var jwt = require('jsonwebtoken');
-var moment = require('moment');
-var request = require('request');
 var sass = require('node-sass-middleware');
 var webpack = require('webpack');
 var config = require('./webpack.config');
@@ -113,7 +111,7 @@ app.get('/api/trade/completed', userController.ensureAuthenticated, tradeControl
 app.get('/api/trade/:id', tradeController.show);
 app.post('/api/trade', userController.ensureAuthenticated, tradeController.create);
 app.post('/api/trade/:tradeId/select-book/:bookId', tradeController.selectBook);
-app.post('/api/trade/:id/approve', tradeController.approve);
+app.post('/api/trade/:id/approve', userController.ensureAuthenticated, tradeController.approve);
 app.put('/api/trade/:id', tradeController.update);
 app.delete('/api/trade/:id', userController.ensureAuthenticated, tradeController.remove);
 

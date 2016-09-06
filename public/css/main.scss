@@ -42,6 +42,7 @@ html {
 
 body {
   margin-bottom: 44px;
+  overflow-x: hidden;
 }
 
 footer {
@@ -262,7 +263,7 @@ textarea {
 .book-list {
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
 
 .book-container {
@@ -286,7 +287,13 @@ textarea {
 
 .trade-list-container {
   margin: auto;
-  max-width: 1140px;
+  max-width: 1440px;
+}
+
+.trade-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .trade-container {
@@ -296,7 +303,7 @@ textarea {
   border-radius: 5px;
   width: 100%;
   max-width: 40rem;
-  margin: 2rem 1rem 1rem 1rem;
+  margin: 2rem 1rem 3rem 3rem;
   padding: 1rem 1rem 1rem 1rem;
 }
 
@@ -313,6 +320,7 @@ textarea {
 .trade-button-row {
   clear: both;
   margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 .trade-button {
