@@ -18,7 +18,12 @@ export default function trades(state = defaultState, action) {
     case 'UPDATE_TRADES':
       return Object.assign({}, state, action.data);
     case 'REMOVE_TRADE':
-      return state[action.domain].trades.filter(trade => trade.id !== action.tradeId);
+      const updated = Object.assign({}, state);
+      updated[action.domain] = {
+        updated: Date.now(),
+        trades: state[action.domain].trades.filter(trade => trade.id !== action.tradeId),
+      };
+      return updated;
     default:
       return state;
   }

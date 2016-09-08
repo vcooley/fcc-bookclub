@@ -3,6 +3,7 @@ const Trade = require('../models/Trade');
 const Book = require('../models/Book');
 
 function handleError(err, res) {
+  console.error(err.msg);
   return res.status(err.code || 500).send({ msg: err.msg || 'Server Error.' });
 }
 
@@ -10,22 +11,22 @@ function handleError(err, res) {
 // GET /
 exports.index = (req, res) => {
   return Trade.forge().fetchAll()
-  .then(trades => {
-    return res.json(trades.toJSON());
-  })
-  .catch(err => handleError(err, res));
+    .then(trades => {
+      return res.json(trades.toJSON());
+    })
+    .catch(err => handleError(err, res));
 };
 
 // GET /:id
 exports.show = (req, res) => {
   return Trade.forge({ id: req.params.id }).fetch()
-  .then(trade => {
-    if (!trade) {
-      return handleError({ code: 404, msg: 'Not Found.' }, res);
-    }
-    return res.json(trade.toJSON());
-  })
-  .catch(err => handleError(err, res));
+    .then(trade => {
+      if (!trade) {
+        return handleError({ code: 404, msg: 'Not Found.' }, res);
+      }
+      return res.json(trade.toJSON());
+    })
+    .catch(err => handleError(err, res));
 };
 
 // GET /pending
@@ -116,7 +117,6 @@ exports.approve = (req, res) => {
     .fetch()
     .then(trade => {
       if (!trade) {
-        console.log('not found')
         return handleError({ code: 404, msg: 'Not Found.', res });
       }
       if (req.user.id === trade.toJSON().requester) {

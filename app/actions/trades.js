@@ -35,8 +35,7 @@ function deleteTradeResource(tradeId) {
       'Content-Type': 'application/json',
     },
   })
-    .then(checkStatus)
-    .then(res => res.json());
+    .then(checkStatus);
 }
 
 export function getPending() {
@@ -58,6 +57,7 @@ export function getPending() {
 
 export function makePending(trade) {
   return (dispatch) => {
+    console.log(trade)
     return fetch('/api/trade/', {
       method: 'POST',
       headers: {
@@ -65,14 +65,14 @@ export function makePending(trade) {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: trade,
+      body: JSON.stringify(trade),
     })
       .then(checkStatus)
       .then(res => res.json())
       .then(() => {
         return dispatch({
           type: 'ADD_TRADE_SUCCESS',
-          messages: ['Successful requested a trade.'],
+          messages: ['Successfully requested a trade.'],
         });
       })
       .catch(() => {
@@ -127,7 +127,7 @@ export function declinePending(tradeId) {
           messages: ['Trade successfully removed.'],
         });
       })
-      .catch(() => {
+      .catch((err) => {
         return dispatch({
           type: 'REMOVE_TRADE_FAILURE',
           messages: ['There was a problem removing that trade.'],
