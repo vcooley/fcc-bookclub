@@ -267,19 +267,26 @@ textarea {
 }
 
 .book-container {
-  width: 30%;
   max-width: 20rem;
+  margin: 1rem 1rem 1rem 1rem;
   padding: 1rem 1rem 1rem 1rem;
+  background-color: #FEFEFC;
+  border: 2px solid;
+  border-color: #555555;
+  border-radius: 5px;
+  box-sizing: content-box;
 }
 
 .book {
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .book-image {
-  margin: auto;
+  max-height: 20rem;
+  margin-bottom: 1rem;
+}
+
+.book-title {
+  margin-bottom: 1rem;
 }
 
 // Trade List
@@ -333,4 +340,7 @@ textarea {
 
 .decline-button {
   float: right;
+}
+
+.request-button {
 }

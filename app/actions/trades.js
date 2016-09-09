@@ -57,7 +57,6 @@ export function getPending() {
 
 export function makePending(trade) {
   return (dispatch) => {
-    console.log(trade)
     return fetch('/api/trade/', {
       method: 'POST',
       headers: {
