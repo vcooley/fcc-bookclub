@@ -1,5 +1,6 @@
 import React from 'react';
 import Book from '../Books/Book';
+import MissingBook from './MissingBook';
 
 class Trade extends React.Component {
   render() {
@@ -27,10 +28,19 @@ class Trade extends React.Component {
       <div className="trade-container">
         <div className="trade-book-container">
           <div className="trade-book">
-            <Book book={this.props.trade.requester_book}/>
+            {trade.requester_book ? (
+              <Book book={trade.requester_book} />
+            ) : (
+              <MissingBook message="Click here to request a book in this trade."/>
+            )}
           </div>
           <div className="trade-book">
-            <Book book={this.props.trade.requestee_book} />
+            {trade.requestee_book ? (
+              <Book book={trade.requestee_book} />
+            ) : (
+              <MissingBook requestee={trade.requestee}
+                message="Waiting for a book to be requested."/>
+            )}
           </div>
         </div>
         {buttons}

@@ -20,7 +20,9 @@ class ListContainer extends React.Component {
               <div key={index} className="book-container">
                 <Book book={book} />
                 <button onClick={this.requestBook.bind(this, book)}
-                  className="btn btn-success request-button">Request</button>
+                  className="btn btn-success request-button">
+                  <span className="glyphicon glyphicon-plus"></span>
+                </button>
               </div>
             );
           })}

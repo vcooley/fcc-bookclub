@@ -10,8 +10,10 @@ class Pending extends React.Component {
 
   render() {
     return (
-      <List trades={this.props.trades} onApprove={this.props.handleApproveTrade}
-        onDecline={this.props.handleDeclineTrade} />
+      <div>
+        <List trades={this.props.trades} onApprove={this.props.handleApproveTrade}
+          onDecline={this.props.handleDeclineTrade} />
+      </div>
     );
   }
 }

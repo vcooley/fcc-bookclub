@@ -264,28 +264,30 @@ textarea {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  align-items: flex-end;
 }
 
 .book-container {
-  max-width: 20rem;
+  max-width: 16rem;
   margin: 1rem 1rem 1rem 1rem;
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1.25rem;
   background-color: #FEFEFC;
   border: 2px solid;
   border-color: #555555;
   border-radius: 5px;
-  box-sizing: content-box;
 }
 
 .book {
 }
 
 .book-image {
-  max-height: 20rem;
+  width: 100%;
   margin-bottom: 1rem;
 }
 
 .book-title {
+  width: 100%;
+  overflow: hidden;
   margin-bottom: 1rem;
 }
 
@@ -343,4 +345,6 @@ textarea {
 }
 
 .request-button {
+  float: right;
+  clear: left;
 }
