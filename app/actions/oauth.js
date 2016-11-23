@@ -6,14 +6,17 @@ import { browserHistory } from 'react-router';
 
 // Sign in with Github
 export function githubLogin() {
+  const clientId = location.host === 'localhost:3000' ?
+    '344e0ad37a1bd3f03357' :
+    'd18d64ac90057362bfed';
   const github = {
-    url: 'http://localhost:3000/auth/github',
-    clientId: '344e0ad37a1bd3f03357',
-    redirectUri: 'http://localhost:3000/auth/github/callback',
+    url: `${location.protocol}//${location.host}/auth/github`,
+    clientId,
+    redirectUri: `${location.protocol}//${location.host}/auth/github/callback`,
     authorizationUrl: 'https://github.com/login/oauth/authorize',
     scope: 'user',
     width: 452,
-    height: 633
+    height: 633,
   };
 
   return (dispatch) => {
@@ -167,16 +170,17 @@ function pollPopup({ window, config, requestToken, dispatch }) {
 function exchangeCodeForToken({ oauthData, config, window, interval, dispatch }) {
   return new Promise((resolve, reject) => {
     const data = Object.assign({}, oauthData, config);
-
+    console.log('exchange request sent')
     return fetch(config.url, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     }).then((response) => {
+      console.log(response)
       if (response.ok) {
         return response.json().then((json) => {
-          resolve({ token: json.token, user: json.user, window: window, interval: interval, dispatch: dispatch });
+          resolve({ token: json.token, user: json.user, window, interval, dispatch });
         });
       } else {
         return response.json().then((json) => {
