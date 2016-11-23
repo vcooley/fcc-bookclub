@@ -20,17 +20,17 @@ class Add extends React.Component {
 
   render() {
     return (
-      <div className="">
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <div className="form-group">
+      <div className="add-book-form">
+        <form className="form-inline" onSubmit={this.handleSubmit.bind(this)}>
+          <div className="form-group add-book-input">
             <input
               type="text"
               className="form-control"
               placeholder="Add a book."
               onChange={this.handleTextChange}
             />
-            <button type="submit" className="btn btn-default">Add</button>
           </div>
+          <button type="submit" className="btn btn-default">Add</button>
         </form>
       </div>
     );

@@ -5975,6 +5975,9 @@ textarea {
   letter-spacing: 0.2em;
   text-transform: uppercase; }
 
+.add-book-form {
+  margin-left: 1rem; }
+
 .book-list-container {
   margin: auto;
   max-width: 1140px; }
@@ -5994,6 +5997,9 @@ textarea {
   border-color: #555555;
   border-radius: 5px; }
 
+.missing-book {
+  height: 100%; }
+
 .book-image {
   width: 100%;
   margin-bottom: 1rem; }
@@ -6003,16 +6009,13 @@ textarea {
   overflow: hidden;
   margin-bottom: 1rem; }
 
-.trade-area-description {
-  margin-left: 2rem; }
-
 .trade-list-container {
   margin: auto;
   max-width: 1440px; }
 
 .trade-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap; }
 
 .trade-container {
@@ -6048,5 +6051,4 @@ textarea {
   float: right; }
 
 .request-button {
-  float: right;
-  clear: left; }
+  float: right; }

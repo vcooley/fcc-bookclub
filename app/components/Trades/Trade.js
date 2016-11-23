@@ -28,18 +28,18 @@ class Trade extends React.Component {
       <div className="trade-container">
         <div className="trade-book-container">
           <div className="trade-book">
-            {trade.requester_book ? (
+            {trade.requester_book.id ? (
               <Book book={trade.requester_book} />
             ) : (
               <MissingBook message="Click here to request a book in this trade."/>
             )}
           </div>
           <div className="trade-book">
-            {trade.requestee_book ? (
+            {trade.requestee_book.id ? (
               <Book book={trade.requestee_book} />
             ) : (
               <MissingBook requestee={trade.requestee}
-                message="Waiting for a book to be requested."/>
+                message="Waiting for a book to be requested from you."/>
             )}
           </div>
         </div>

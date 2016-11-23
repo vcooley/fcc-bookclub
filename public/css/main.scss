@@ -255,6 +255,10 @@ textarea {
 // Book List
 // -------------------------
 
+.add-book-form {
+  margin-left: 1rem;
+}
+
 .book-list-container {
   margin: auto;
   max-width: 1140px;
@@ -265,8 +269,8 @@ textarea {
   justify-content: flex-start;
   flex-wrap: wrap;
   align-items: flex-end;
-}
 
+}
 .book-container {
   max-width: 16rem;
   margin: 1rem 1rem 1rem 1rem;
@@ -278,6 +282,10 @@ textarea {
 }
 
 .book {
+}
+
+.missing-book {
+  height: 100%;
 }
 
 .book-image {
@@ -301,7 +309,7 @@ textarea {
 
 .trade-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -346,5 +354,4 @@ textarea {
 
 .request-button {
   float: right;
-  clear: left;
 }
