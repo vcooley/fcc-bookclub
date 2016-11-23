@@ -7,13 +7,13 @@ import { browserHistory } from 'react-router';
 // Sign in with Github
 export function githubLogin() {
   const github = {
-    url: 'http://localhost:3000/auth/github',
+    url: `${location.protocol}//${location.host}/auth/github`,
     clientId: '344e0ad37a1bd3f03357',
-    redirectUri: 'http://localhost:3000/auth/github/callback',
+    redirectUri: `${location.protocol}//${location.host}/auth/github/callback`,
     authorizationUrl: 'https://github.com/login/oauth/authorize',
     scope: 'user',
     width: 452,
-    height: 633
+    height: 633,
   };
 
   return (dispatch) => {
