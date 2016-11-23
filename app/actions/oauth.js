@@ -6,9 +6,12 @@ import { browserHistory } from 'react-router';
 
 // Sign in with Github
 export function githubLogin() {
+  const clientId = location.host === 'localhost:3000' ?
+    '344e0ad37a1bd3f03357' :
+    'd18d64ac90057362bfed';
   const github = {
     url: `${location.protocol}//${location.host}/auth/github`,
-    clientId: '344e0ad37a1bd3f03357',
+    clientId,
     redirectUri: `${location.protocol}//${location.host}/auth/github/callback`,
     authorizationUrl: 'https://github.com/login/oauth/authorize',
     scope: 'user',
