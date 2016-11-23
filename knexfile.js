@@ -1,6 +1,8 @@
 const dotenv = require('dotenv');
 
-dotenv.config({ path: `${__dirname}/.env` });
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: `${__dirname}/.env` });
+}
 
 const config = {
   development: {
