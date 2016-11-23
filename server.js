@@ -16,7 +16,9 @@ var webpack = require('webpack');
 var config = require('./webpack.config');
 
 // Load environment variables from .env file
-dotenv.config({ path: `${__dirname}/.env` });
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: `${__dirname}/.env` });
+}
 
 // ES6 Transpiler
 require('babel-core/register');
@@ -161,7 +163,7 @@ if (app.get('env') === 'test') {
 }
 
 app.listen(app.get('port'), () => {
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log(`Express server listening on port  ${app.get('port')}`);
 });
 
 module.exports = app;
