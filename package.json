@@ -9,7 +9,7 @@
     "start": "nodemon server.js",
     "test": "npm run test:client && npm run test:server",
     "test:client": "mocha test/client --recursive --compilers js:babel-register",
-    "test:server": "set NODE_ENV=test&& ava",
+    "test:server": "set NODE_ENV=test && ava",
     "ava:watch": "set NODE_ENV=test&& ava --watch --verbose"
   },
   "dependencies": {
