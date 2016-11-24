@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const config = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-hot-middleware/client',
     './app/main',
   ],
   output: {
@@ -47,6 +46,7 @@ const config = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
+  config.entry.push('webpack-hot-middleware/client');
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 
