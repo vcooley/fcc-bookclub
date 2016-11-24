@@ -29,10 +29,6 @@ const config = {
             ['react-transform', {
               transforms: [
                 {
-                  transform: 'react-transform-hmr',
-                  imports: ['react'],
-                  locals: ['module'],
-                }, {
                   transform: 'react-transform-catch-errors',
                   imports: ['react', 'redbox-react'],
                 },
@@ -46,7 +42,13 @@ const config = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
+  const transform = {
+    transform: 'react-transform-hmr',
+    imports: ['react'],
+    locals: ['module'],
+  };
   config.entry.push('webpack-hot-middleware/client');
+  config.module.loaders[0].query.plugins.push(transform);
   config.plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 
