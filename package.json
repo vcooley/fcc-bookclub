@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "My app description",
   "scripts": {
-    "prod": "webpack -p && node server.js",
+    "prod": "knex migrate:latest --env production && webpack -p && node server.js",
     "build": "webpack --display-error-details",
     "deploy": "npm test && git push heroku master",
     "postinstall": "npm run build",
