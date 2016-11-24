@@ -13,6 +13,7 @@ const config = {
     publicPath: '/js',
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
@@ -45,12 +46,6 @@ const config = {
     ],
   },
 };
-
-if (process.env.NODE_ENV !== 'produciton') {
-  config.plugins.push(
-    new webpack.HotModuleReplacementPlugin()
-  );
-}
 
 if (process.env.NODE_ENV === 'production') {
   config.plugins.push(
