@@ -312,11 +312,14 @@ exports.authGithub = (req, res) => {
 
 
   // Step 1. Exchange authorization code for access token.
+  console.log('initiate post to github')
   request.post(accessTokenUrl, { json: true, form: params })
   .then(response => {
+    console.log('got token from github')
     return response.body.access_token;
   })
   .then(accessToken => {
+    console.log('requesting user profile and email')
     const headers = {
       Authorization: `bearer ${accessToken}`,
       'User-Agent': 'bookclub',
@@ -326,6 +329,7 @@ exports.authGithub = (req, res) => {
     return Promise.all([profileRequest, emailRequest]);
   })
   .then(responses => {
+    console.log('receiving email and profile')
     const profile = responses[0].body;
     const emails = responses[1].body;
     let primary = emails.find(email => email.primary === true);
