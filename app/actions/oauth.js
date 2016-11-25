@@ -175,11 +175,11 @@ function exchangeCodeForToken({ oauthData, config, window, interval, dispatch })
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     }).then((response) => {
       if (response.ok) {
         return response.json().then((json) => {
-          resolve({ token: json.token, user: json.user, window: window, interval: interval, dispatch: dispatch });
+          resolve({ token: json.token, user: json.user, window, interval, dispatch });
         });
       } else {
         return response.json().then((json) => {

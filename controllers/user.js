@@ -294,7 +294,7 @@ exports.resetPost = function(req, res, next) {
   ]);
 };
 /**
- * POST /auth/google
+ * POST /auth/github
  * Sign in with Github
  */
 exports.authGithub = (req, res) => {
