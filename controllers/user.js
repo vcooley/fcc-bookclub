@@ -326,9 +326,9 @@ exports.authGithub = (req, res) => {
     return Promise.all([profileRequest, emailRequest]);
   })
   .then(responses => {
-    console.log('got email and profile')
+    console.log('got email and profile', responses)
     const profile = responses[0].body;
-    console.log('profile set,' profile)
+    console.log('profile set,', profile)
     const emails = responses[1].body;
     console.log('emails set to', emails)
     let primary = emails.find(email => email.primary === true);
