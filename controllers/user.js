@@ -328,10 +328,13 @@ exports.authGithub = (req, res) => {
   .then(responses => {
     console.log('got email and profile')
     const profile = responses[0].body;
+    console.log('profile set')
     const emails = responses[1].body;
+    console.log('emails set')
     let primary = emails.find(email => email.primary === true);
+    console.log('primary set to', primary);
     if (!primary) {
-      console.log('no primary email')
+      console.log('no primary email');
       primary = emails[0];
     }
     console.log(' primary email set')
