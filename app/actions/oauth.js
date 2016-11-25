@@ -170,7 +170,7 @@ function pollPopup({ window, config, requestToken, dispatch }) {
 function exchangeCodeForToken({ oauthData, config, window, interval, dispatch }) {
   return new Promise((resolve, reject) => {
     const data = Object.assign({}, oauthData, config);
-
+    console.log('exchange request sent')
     return fetch(config.url, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
