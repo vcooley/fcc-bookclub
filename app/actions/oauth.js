@@ -170,14 +170,12 @@ function pollPopup({ window, config, requestToken, dispatch }) {
 function exchangeCodeForToken({ oauthData, config, window, interval, dispatch }) {
   return new Promise((resolve, reject) => {
     const data = Object.assign({}, oauthData, config);
-    console.log('exchange request sent')
     return fetch(config.url, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'same-origin', // By default, fetch won't send any cookies to the server
       body: JSON.stringify(data),
     }).then((response) => {
-      console.log(response)
       if (response.ok) {
         return response.json().then((json) => {
           resolve({ token: json.token, user: json.user, window, interval, dispatch });

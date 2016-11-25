@@ -326,28 +326,18 @@ exports.authGithub = (req, res) => {
     return Promise.all([profileRequest, emailRequest]);
   })
   .then(responses => {
-    console.log('got email and profile', responses)
     const profile = responses[0].body;
-    console.log('profile set,', profile)
     const emails = responses[1].body;
-    console.log('emails set to', emails)
     let primary = emails.find(email => email.primary === true);
-    console.log('primary set to', primary);
     if (!primary) {
-      console.log('no primary email');
       primary = emails[0];
-      console.log('set primary to', primary)
     }
-    console.log(' primary email set')
     profile.email = primary.email;
-    console.log('set profile email')
     if (profile.error) {
-      console.log('profile error')
       return res.status(500).send({ message: profile.error.message });
     }
       // Step 3a. Link accounts if user is authenticated.
     if (req.isAuthenticated()) {
-      console.log('user was already authenticated')
       return new User({ github: profile.id })
       .fetch()
       .then(user => {
@@ -371,7 +361,6 @@ exports.authGithub = (req, res) => {
     return new User({ github: profile.id })
     .fetch()
     .then(user => {
-      console.log('fetched user')
       if (user) {
         return res.send({ token: generateToken(user), user });
       }
