@@ -312,14 +312,11 @@ exports.authGithub = (req, res) => {
 
 
   // Step 1. Exchange authorization code for access token.
-  console.log('initiate post to github')
   request.post(accessTokenUrl, { json: true, form: params })
   .then(response => {
-    console.log('got token from github')
     return response.body.access_token;
   })
   .then(accessToken => {
-    console.log('requesting user profile and email')
     const headers = {
       Authorization: `bearer ${accessToken}`,
       'User-Agent': 'bookclub',
@@ -329,7 +326,6 @@ exports.authGithub = (req, res) => {
     return Promise.all([profileRequest, emailRequest]);
   })
   .then(responses => {
-    console.log('receiving email and profile')
     const profile = responses[0].body;
     const emails = responses[1].body;
     let primary = emails.find(email => email.primary === true);
@@ -339,10 +335,12 @@ exports.authGithub = (req, res) => {
     profile.email = primary.email;
 
     if (profile.error) {
+      console.log('profile error')
       return res.status(500).send({ message: profile.error.message });
     }
       // Step 3a. Link accounts if user is authenticated.
     if (req.isAuthenticated()) {
+      console.log('user was already authenticated')
       return new User({ github: profile.id })
       .fetch()
       .then(user => {
@@ -362,6 +360,7 @@ exports.authGithub = (req, res) => {
       });
     }
 
+    console.log('user was not authenticated, retrieving or creating new account')
     // Step 3b. Create a new user account or return an existing one.
     return new User({ github: profile.id })
     .fetch()
