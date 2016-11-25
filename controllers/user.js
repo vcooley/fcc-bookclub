@@ -326,14 +326,17 @@ exports.authGithub = (req, res) => {
     return Promise.all([profileRequest, emailRequest]);
   })
   .then(responses => {
+    console.log('got email and profile')
     const profile = responses[0].body;
     const emails = responses[1].body;
     let primary = emails.find(email => email.primary === true);
     if (!primary) {
+      console.log('no primary email')
       primary = emails[0];
     }
+    console.log(' primary email set')
     profile.email = primary.email;
-
+    console.log('set profile email')
     if (profile.error) {
       console.log('profile error')
       return res.status(500).send({ message: profile.error.message });
@@ -360,14 +363,12 @@ exports.authGithub = (req, res) => {
       });
     }
 
-    console.log('user was not authenticated, retrieving or creating new account')
     // Step 3b. Create a new user account or return an existing one.
     return new User({ github: profile.id })
     .fetch()
     .then(user => {
       console.log('fetched user')
       if (user) {
-        console.log('user found sending response to client')
         return res.send({ token: generateToken(user), user });
       }
 
