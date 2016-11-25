@@ -365,9 +365,12 @@ exports.authGithub = (req, res) => {
     return new User({ github: profile.id })
     .fetch()
     .then(user => {
+      console.log('fetched user')
       if (user) {
+        console.log('user found sending response to client')
         return res.send({ token: generateToken(user), user });
       }
+
       new User({ email: profile.email })
       .fetch()
       .then(user => {
